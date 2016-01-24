@@ -2,8 +2,7 @@
 # Repositories
 ###
 
-%include f23-fedberry-repos.ks
-
+%include fedberry-repos.ks
 
 
 ###
@@ -23,7 +22,7 @@ auth --useshadow --passalgo=sha512
 firstboot --reconfig
 
 # SELinux configuration
-selinux --permissive
+selinux --enforcing
 
 # System services
 services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd"
@@ -128,7 +127,6 @@ generic-release-notes
 -thai-scalable-waree-fonts
 -jomolhari-fonts
 -naver-nanum-gothic-fonts
-
 %end
 
 

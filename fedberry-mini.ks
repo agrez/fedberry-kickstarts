@@ -2,7 +2,7 @@
 # Repositories
 ###
 
-%include f23-fedberry-repos.ks
+%include fedberry-repos.ks
 
 
 ###
@@ -37,7 +37,7 @@ services --disabled="network" --enabled="ssh,NetworkManager,chronyd"
 bootloader --location=boot
 # Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 128 --label="BOOT" --asprimary
-part / --fstype="ext4" --size 1896 --grow --label="rootfs" --asprimary
+part / --fstype="ext4" --size 1664 --grow --label="rootfs" --asprimary
 # Note: the --fsoptions & --fsprofile switches dont seem to work at all!
 #  <SIGH> Will have to edit fstab in %post :-(
 

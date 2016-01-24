@@ -193,20 +193,6 @@ sed -i 's/nortc/elevator=deadline nortc libahci.ignore_sss=1 raid=noautodetect/g
 %end
 
 
-### An accelerated (limited to hardware accelerated window moving/scrolling) x.org video driver is available.
-# Add to raspberrpi-local rpm package?
-#%post
-#cat > /etc/X11/xorg.conf.d/20-fbturbo.conf <<EOF
-#Section "Device"
-#    Identifier "Raspberry Pi FBDEV"
-#    Driver "fbturbo"
-#    Option "fbdev" "/dev/fb0"
-#    Option "SwapbuffersWait" "true"
-#EndSection
-#EOF
-#%end
-
-
 ### Resize root partition on first boot
 %post
 echo "Enabling resizing of root partition on first boot"

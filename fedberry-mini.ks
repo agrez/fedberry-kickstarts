@@ -111,8 +111,9 @@ echo "deltarpm=0" >>/etc/dnf/dnf.conf
 echo "Creating user 'raspberry'"
 /sbin/useradd -m -p $(openssl passwd -1 raspberry) raspberry
 
-# Expire the current password, & force new password on first login
+# Expire the current password & force new password on first login
 passwd -e raspberry
+passwd -e root
 %end
 
 

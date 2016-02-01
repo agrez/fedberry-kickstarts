@@ -54,17 +54,19 @@ part / --fstype="ext4" --size 1664 --grow --label="rootfs" --asprimary
 
 %packages --instLangs=en_US.utf8 --excludedocs
 @core
-generic-release
 kernel
+
 # DNF has 'issues' with time travel!
 chrony
 
-# Raspberry Pi2 specific packages
+# FedBerry specific packages
+fedberry-release
+fedberry-release-notes
+fedberry-repo
 python-rpi-gpio
 raspberrypi-local
 raspberrypi-vc-utils
 raspberrypi-vc-libs
-raspberrypi-repo
 
 # Packages to Remove
 -fedora-release
@@ -138,20 +140,6 @@ echo "tmpfs /tmp tmpfs    defaults,noatime,size=100m 0 0" >>/etc/fstab
 echo "Setting default runlevel to multiuser text mode"
 rm -f /etc/systemd/system/default.target
 ln -s /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
-%end
-
-
-#### Give the remix a better name than 'generic'
-# This is hacky! Need to make my own fedberry-release rpm
-%post
-echo "Modifying release information"
-sed -i -e 's/Generic release/RPi2 Fedora Remix/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i -e 's/(Generic)/(Twenty Three)/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i 's/NAME=Generic/NAME="RPi2 Fedora Remix"/g' /etc/os-release
-sed -i 's/ID=generic/ID=FedBerry/g' /etc/os-release
-sed -i 's/(Generic)/(Twenty Three)/g' /etc/os-release
-sed -i '/ID=FedBerry/a ID_LIKE="rhel fedora"' /etc/os-release
-sed -i 's/Generic 23/RPi2 Fedora Remix 23/g' /etc/os-release
 %end
 
 

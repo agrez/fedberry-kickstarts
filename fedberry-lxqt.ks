@@ -86,24 +86,23 @@ xorg-x11-drv-fbturbo
 mesa-dri-drivers
 glx-utils
 
-# Raspberry Pi2 specific packages
+# FedBerry specific packages
+fedberry-release
+fedberry-release-notes
+fedberry-repo
 python-rpi-gpio
 raspberrypi-local
 raspberrypi-vc-utils
 raspberrypi-vc-libs
-raspberrypi-repo
 
 # We'll want to resize the rootfs on first boot
 rootfs-resize
 
-## Add Generic packages and remove fedora packages. 
+# Add Generic logos & remove fedora packages.
 generic-logos
-generic-release
-generic-release-notes
 -fedora-logos
 -fedora-release
 -fedora-release-notes
-#####
 
 ### Packages to Remove
 -fprintd-pam
@@ -164,19 +163,6 @@ dnf -y remove dracut-config-rescue uboot-tools
 %post
 echo "Setting size limit of 100M for tmpfs for /tmp."
 echo "tmpfs /tmp tmpfs    defaults,noatime,size=100m 0 0" >>/etc/fstab
-%end
-
-
-### Give the remix a better name than 'generic'
-# This is hacky! Need to make my own fedberry-release rpm
-%post
-sed -i -e 's/Generic release/RPi2 Fedora Remix/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i -e 's/(Generic)/(Twenty Three)/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i 's/NAME=Generic/NAME="RPi2 Fedora Remix"/g' /etc/os-release
-sed -i 's/ID=generic/ID=FedBerry/g' /etc/os-release
-sed -i 's/(Generic)/(Twenty Three)/g' /etc/os-release
-sed -i '/ID=FedBerry/a ID_LIKE="rhel fedora"' /etc/os-release
-sed -i 's/Generic 23/RPi2 Fedora Remix 23/g' /etc/os-release
 %end
 
 

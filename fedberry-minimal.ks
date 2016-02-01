@@ -79,19 +79,6 @@ echo .
 %end
 
 
-# Give the remix a better name than 'generic'
-# This is hacky! Need to make my own fedberry-release rpm
-%post
-sed -i -e 's/Generic release/RPi2 Fedora Remix/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i -e 's/(Generic)/(Twenty Three)/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i 's/NAME=Generic/NAME="RPi2 Fedora Remix"/g' /etc/os-release
-sed -i 's/ID=generic/ID=FedBerry/g' /etc/os-release
-sed -i 's/(Generic)/(Twenty Three)/g' /etc/os-release
-sed -i '/ID=FedBerry/a ID_LIKE="rhel fedora"' /etc/os-release
-sed -i 's/Generic 23/RPi2 Fedora Remix 23/g' /etc/os-release
-%end
-
-
 # Need to ensure have our custom rpi2 kernel & firmware NOT the fedora kernel & firmware
 %post
 sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.repos.d/fedora-updates.repo
@@ -132,20 +119,20 @@ perf
 -initial-setup-gui
 -uboot-tools
 
-# raspberry Pi2 specific packages
+# FedBerry specific packages
+fedberry-release
+fedberry-release-notes
+fedberry-repo
 python-rpi-gpio
 raspberrypi-local
 raspberrypi-vc-utils
 raspberrypi-vc-libs
-raspberrypi-repo
 
 
 # we'll want to resize the rootfs on first boot
 rootfs-resize
 
-# Add Generic packages and remove fedora packages. 
+# Remove fedora packages. 
 -fedora-release
 -fedora-release-notes
-generic-release
-generic-release-notes
 %end

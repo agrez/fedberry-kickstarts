@@ -1,8 +1,13 @@
 ###
+# RELEASE = 2
+###
+
+
+###
 # Repositories
 ###
 
-%include f23-fedberry-repos.ks
+%include fedberry-repos.ks
 
 
 # System language
@@ -10,13 +15,12 @@ lang en_US.UTF-8
 # Firewall configuration
 firewall --enabled --service=mdns,ssh
 # System authorization information
-auth --useshadow --enablemd5
+auth --useshadow --passalgo=sha512
 # Run the Setup Agent on first boot
 firstboot --reconfig
 # SELinux configuration
 selinux --enforcing
-# Installation logging level
-logging --level=info
+
 # System services
 services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd"
 
@@ -28,15 +32,14 @@ services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,Netw
 #       the last partition in order for rootfs-resize to work.
 #
 # System bootloader configuration
-
 bootloader --location=boot
 #zerombr
 #clearpart --all
+
 ## Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 300 --label=BOOT --asprimary
 part swap --fstype="swap" --size 1000 --asprimary
-part / --fstype="ext4" --size 1200 --grow --fsoptions="noatime" --label=rootfs --asprimary
-
+part / --fstype="ext4" --size 3200 --grow --fsoptions="noatime" --label=rootfs --asprimary
 
 %post
 # work around for poor key import UI in PackageKit
@@ -54,40 +57,14 @@ rm -f /var/lib/rpm/__db*
 echo "Disabling tmpfs for /tmp."
 systemctl mask tmp.mount
 
-# Arm boot config
 #/usr/sbin/a-b-c
 
 yum -y remove dracut-config-generic
+
 %end
 
 
-%post
-# setup systemd to boot to the right runlevel
-echo -n "Setting default runlevel to multiuser text mode"
-rm -f /etc/systemd/system/default.target
-ln -s /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
-echo .
-
-echo -n "Enabling initial-setup text mode on startup"
-ln -s /usr/lib/systemd/system/initial-setup-text.service /etc/systemd/system/multi-user.target.wants/initial-setup-text.service
-echo .
-%end
-
-
-# Give the remix a better name than 'generic'
-# This is hacky! Need to make my own fedberry-release rpm
-%post
-sed -i -e 's/Generic release/RPi2 Fedora Remix/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i -e 's/(Generic)/(Twenty Three)/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i 's/NAME=Generic/NAME="RPi2 Fedora Remix"/g' /etc/os-release
-sed -i 's/ID=generic/ID=FedBerry/g' /etc/os-release
-sed -i 's/(Generic)/(Twenty Three)/g' /etc/os-release
-sed -i '/ID=FedBerry/a ID_LIKE="rhel fedora"' /etc/os-release
-sed -i 's/Generic 23/RPi2 Fedora Remix 23/g' /etc/os-release
-%end
-
-
-# Need to ensure have our custom rpi2 kernel & firmware NOT the fedora kernel & firmware
+# We need to ensure have the custom rpi2 kernel NOT the generic fedora kernel
 %post
 sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.repos.d/fedora-updates.repo
 %end
@@ -95,8 +72,14 @@ sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.
 
 # Remove uboot images after kernel installation
 %post
-echo "Cleaning up uboot images"
 rm -f /boot/uI*
+%end
+
+
+%post
+echo "Enabling initial-setup gui mode on startup"
+ln -s /usr/lib/systemd/system/initial-setup-graphical.service /etc/systemd/system/graphical.target.wants/initial-setup-graphical.service
+echo .
 %end
 
 
@@ -107,40 +90,66 @@ touch /.rootfs-repartition
 touch /.resized
 %end
 
+%post
+# Set gpu_mem=128 in config.txt!
+sed -i s'/gpu_mem=32/gpu_mem=128/' /boot/config.txt
+%end
 
 %packages
+@base-x
 @core
+@dial-up
+@fonts
 @hardware-support
+@input-methods
+@multimedia
+@networkmanager-submodules
+@printing
+@standard
+@xfce-apps
+@xfce-desktop
+@xfce-extra-plugins
+@xfce-media
+@xfce-office
 #arm-boot-config
 chrony
-dosfstools
 dracut-config-generic
 #extlinux-bootloader
+gnome-keyring-pam
 initial-setup
+initial-setup-gui
 kernel
-kernel-tools
-nano
-perf
+system-config-printer
 #uboot-images-armv7
--@dial-up
--@standard
--initial-setup-gui
--uboot-tools
+wget
+xscreensaver-extras
 
-# raspberry Pi2 specific packages
+# FedBerry specific packages
+fedberry-release
+fedberry-release-notes
+fedberry-repo
 python-rpi-gpio
 raspberrypi-local
 raspberrypi-vc-utils
 raspberrypi-vc-libs
-raspberrypi-repo
-
 
 # we'll want to resize the rootfs on first boot
 rootfs-resize
 
-# Add Generic packages and remove fedora packages. 
+# Add Generic logos & remove fedora packages.
+generic-logos
+-fedora-logos
 -fedora-release
 -fedora-release-notes
-generic-release
-generic-release-notes
+
+-PackageKit*
+-acpid
+-aspell-*
+-autofs
+-desktop-backgrounds-basic
+-gimp-help
+-realmd
+-uboot-tools
+-xfce4-sensors-plugin
+
 %end

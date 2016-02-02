@@ -1,9 +1,13 @@
 ###
+# RELEASE = beta1
+###
+
+
+###
 # Repositories
 ###
 
-%include f23-fedberry-repos.ks
-
+%include fedberry-repos.ks
 
 
 ###
@@ -23,7 +27,7 @@ auth --useshadow --passalgo=sha512
 firstboot --reconfig
 
 # SELinux configuration
-selinux --permissive
+selinux --enforcing
 
 # System services
 services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd"
@@ -82,24 +86,23 @@ xorg-x11-drv-fbturbo
 mesa-dri-drivers
 glx-utils
 
-# Raspberry Pi2 specific packages
+# FedBerry specific packages
+fedberry-release
+fedberry-release-notes
+fedberry-repo
 python-rpi-gpio
 raspberrypi-local
 raspberrypi-vc-utils
 raspberrypi-vc-libs
-raspberrypi-repo
 
 # We'll want to resize the rootfs on first boot
 rootfs-resize
 
-## Add Generic packages and remove fedora packages. 
+# Add Generic logos & remove fedora packages.
 generic-logos
-generic-release
-generic-release-notes
 -fedora-logos
 -fedora-release
 -fedora-release-notes
-#####
 
 ### Packages to Remove
 -fprintd-pam
@@ -128,7 +131,6 @@ generic-release-notes
 -thai-scalable-waree-fonts
 -jomolhari-fonts
 -naver-nanum-gothic-fonts
-
 %end
 
 
@@ -164,19 +166,6 @@ echo "tmpfs /tmp tmpfs    defaults,noatime,size=100m 0 0" >>/etc/fstab
 %end
 
 
-### Give the remix a better name than 'generic'
-# This is hacky! Need to make my own fedberry-release rpm
-%post
-sed -i -e 's/Generic release/RPi2 Fedora Remix/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i -e 's/(Generic)/(Twenty Three)/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i 's/NAME=Generic/NAME="RPi2 Fedora Remix"/g' /etc/os-release
-sed -i 's/ID=generic/ID=FedBerry/g' /etc/os-release
-sed -i 's/(Generic)/(Twenty Three)/g' /etc/os-release
-sed -i '/ID=FedBerry/a ID_LIKE="rhel fedora"' /etc/os-release
-sed -i 's/Generic 23/RPi2 Fedora Remix 23/g' /etc/os-release
-%end
-
-
 ### Need to ensure have our custom rpi2 kernel & firmware NOT the fedora kernel & firmware
 %post
 sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.repos.d/fedora-updates.repo
@@ -188,20 +177,6 @@ sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.
 echo "Modifying cmdline.txt boot options"
 sed -i 's/nortc/elevator=deadline nortc libahci.ignore_sss=1 raid=noautodetect/g' /boot/cmdline.txt
 %end
-
-
-### An accelerated (limited to hardware accelerated window moving/scrolling) x.org video driver is available.
-# Add to raspberrpi-local rpm package?
-#%post
-#cat > /etc/X11/xorg.conf.d/20-fbturbo.conf <<EOF
-#Section "Device"
-#    Identifier "Raspberry Pi FBDEV"
-#    Driver "fbturbo"
-#    Option "fbdev" "/dev/fb0"
-#    Option "SwapbuffersWait" "true"
-#EndSection
-#EOF
-#%end
 
 
 ### Resize root partition on first boot

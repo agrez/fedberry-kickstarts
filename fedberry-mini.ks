@@ -1,8 +1,13 @@
 ###
+# RELEASE = 2
+###
+
+
+###
 # Repositories
 ###
 
-%include f23-fedberry-repos.ks
+%include fedberry-repos.ks
 
 
 ###
@@ -37,7 +42,7 @@ services --disabled="network" --enabled="ssh,NetworkManager,chronyd"
 bootloader --location=boot
 # Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 128 --label="BOOT" --asprimary
-part / --fstype="ext4" --size 1896 --grow --label="rootfs" --asprimary
+part / --fstype="ext4" --size 1664 --grow --label="rootfs" --asprimary
 # Note: the --fsoptions & --fsprofile switches dont seem to work at all!
 #  <SIGH> Will have to edit fstab in %post :-(
 
@@ -49,17 +54,19 @@ part / --fstype="ext4" --size 1896 --grow --label="rootfs" --asprimary
 
 %packages --instLangs=en_US.utf8 --excludedocs
 @core
-generic-release
 kernel
+
 # DNF has 'issues' with time travel!
 chrony
 
-# Raspberry Pi2 specific packages
+# FedBerry specific packages
+fedberry-release
+fedberry-release-notes
+fedberry-repo
 python-rpi-gpio
 raspberrypi-local
 raspberrypi-vc-utils
 raspberrypi-vc-libs
-raspberrypi-repo
 
 # Packages to Remove
 -fedora-release
@@ -106,8 +113,9 @@ echo "deltarpm=0" >>/etc/dnf/dnf.conf
 echo "Creating user 'raspberry'"
 /sbin/useradd -m -p $(openssl passwd -1 raspberry) raspberry
 
-# Expire the current password, & force new password on first login
+# Expire the current password & force new password on first login
 passwd -e raspberry
+passwd -e root
 %end
 
 
@@ -132,20 +140,6 @@ echo "tmpfs /tmp tmpfs    defaults,noatime,size=100m 0 0" >>/etc/fstab
 echo "Setting default runlevel to multiuser text mode"
 rm -f /etc/systemd/system/default.target
 ln -s /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
-%end
-
-
-#### Give the remix a better name than 'generic'
-# This is hacky! Need to make my own fedberry-release rpm
-%post
-echo "Modifying release information"
-sed -i -e 's/Generic release/RPi2 Fedora Remix/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i -e 's/(Generic)/(Twenty Three)/g' /etc/fedora-release /etc/issue /etc/issue.net
-sed -i 's/NAME=Generic/NAME="RPi2 Fedora Remix"/g' /etc/os-release
-sed -i 's/ID=generic/ID=FedBerry/g' /etc/os-release
-sed -i 's/(Generic)/(Twenty Three)/g' /etc/os-release
-sed -i '/ID=FedBerry/a ID_LIKE="rhel fedora"' /etc/os-release
-sed -i 's/Generic 23/RPi2 Fedora Remix 23/g' /etc/os-release
 %end
 
 

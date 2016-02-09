@@ -123,10 +123,10 @@ perf
 fedberry-release
 fedberry-release-notes
 fedberry-repo
-python-rpi-gpio
-raspberrypi-local
+fedberry-local
 raspberrypi-vc-utils
 raspberrypi-vc-libs
+python-rpi-gpio
 
 
 # we'll want to resize the rootfs on first boot

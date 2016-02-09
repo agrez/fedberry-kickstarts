@@ -63,10 +63,10 @@ chrony
 fedberry-release
 fedberry-release-notes
 fedberry-repo
-python-rpi-gpio
-raspberrypi-local
+fedberry-local
 raspberrypi-vc-utils
 raspberrypi-vc-libs
+python-rpi-gpio
 
 # Packages to Remove
 -fedora-release

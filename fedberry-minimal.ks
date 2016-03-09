@@ -1,5 +1,5 @@
 ###
-# RELEASE = 2
+# RELEASE = 2-test1
 ###
 
 
@@ -23,7 +23,7 @@ selinux --enforcing
 # Installation logging level
 logging --level=info
 # System services
-services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd"
+services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd,rootfs-grow"
 
 
 #
@@ -92,11 +92,10 @@ rm -f /boot/uI*
 %end
 
 
-# Resize root partition on first boot
+# Grow root filesystem on first boot
 %post
-echo "Enabling resizing of root partition on first boot"
+echo "Enabling expanding of root partition on first boot"
 touch /.rootfs-repartition
-touch /.resized
 %end
 
 
@@ -124,13 +123,10 @@ fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-local
+fedberry-config
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python-rpi-gpio
-
-
-# we'll want to resize the rootfs on first boot
-rootfs-resize
 
 # Remove fedora packages. 
 -fedora-release

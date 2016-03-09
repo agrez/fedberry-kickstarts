@@ -1,5 +1,5 @@
 ###
-# RELEASE = beta1
+# RELEASE = 2-test1
 ###
 
 
@@ -30,7 +30,7 @@ firstboot --reconfig
 selinux --enforcing
 
 # System services
-services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd"
+services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd,rootfs-grow"
 
 
 # System bootloader configuration# Define how large you want your rootfs to be
@@ -55,9 +55,9 @@ part / --fstype="ext4" --size 3200 --grow --label=rootfs --asprimary
 @input-methods
 @standard
 @lxqt
+kernel
 alsa-plugins-pulseaudio
 lxmenu-data
-kernel
 chrony
 initial-setup
 initial-setup-gui
@@ -71,7 +71,8 @@ gvfs-smb
 wget
 #would like to find a light & fast qt5 replacement for leafpad
 leafpad
-yumex-dnf
+yumex
+# yumex-dnf is buggy under arm for some reason (no problems under x86 arch!)
 qterminal-qt5
 
 # @base-x pulls in too many uneeded drivers.
@@ -82,7 +83,6 @@ xorg-x11-xinit
 xorg-x11-server-Xorg
 xorg-x11-utils
 xorg-x11-drv-fbdev
-xorg-x11-drv-fbturbo
 mesa-dri-drivers
 glx-utils
 
@@ -91,12 +91,10 @@ fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-local
+fedberry-config
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python-rpi-gpio
-
-# We'll want to resize the rootfs on first boot
-rootfs-resize
 
 # Add Generic logos & remove fedora packages.
 generic-logos
@@ -179,11 +177,10 @@ sed -i 's/nortc/elevator=deadline nortc libahci.ignore_sss=1 raid=noautodetect/g
 %end
 
 
-### Resize root partition on first boot
+### Grow root filesystem on first boot
 %post
-echo "Enabling resizing of root partition on first boot"
+echo "Enabling expanding of root partition on first boot"
 touch /.rootfs-repartition
-touch /.resized
 %end
 
 

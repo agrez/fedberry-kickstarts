@@ -1,5 +1,5 @@
 ###
-# RELEASE = 2
+# RELEASE = 2-test1
 ###
 
 
@@ -60,6 +60,7 @@ kernel
 chrony
 
 # FedBerry specific packages
+fedberry-config
 fedberry-release
 fedberry-release-notes
 fedberry-repo

@@ -41,7 +41,5 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-- raspberrypi-local rpm was renamed to fedberry-local
-
 * Fri Feb 05 2016 Vaughan <vaughan at agrez dot net> 23-1
 - Initial release

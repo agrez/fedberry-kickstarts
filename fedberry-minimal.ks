@@ -112,6 +112,7 @@ kernel
 kernel-tools
 nano
 perf
+NetworkManager-wifi
 #uboot-images-armv7
 -@dial-up
 -@standard
@@ -124,6 +125,7 @@ fedberry-release-notes
 fedberry-repo
 fedberry-local
 fedberry-config
+brcm43430-firmware
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python-rpi-gpio

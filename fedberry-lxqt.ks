@@ -55,6 +55,7 @@ part / --fstype="ext4" --size 3200 --grow --label=rootfs --asprimary
 @input-methods
 @standard
 @lxqt
+@networkmanager-submodules
 kernel
 alsa-plugins-pulseaudio
 lxmenu-data
@@ -92,6 +93,7 @@ fedberry-release-notes
 fedberry-repo
 fedberry-local
 fedberry-config
+brcm43430-firmware
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python-rpi-gpio
@@ -187,6 +189,12 @@ touch /.rootfs-repartition
 ### Set gpu_mem=128 in /boot/config.txt
 %post
 sed -i -e s'/gpu_mem=32/gpu_mem=128/' /boot/config.txt
+%end
+
+
+### Set console framebuffer depth to 24bit
+%post
+sed -i s'/#framebuffer_depth=24/framebuffer_depth=24/' /boot/config.txt
 %end
 
 

@@ -41,8 +41,8 @@ services --disabled="network" --enabled="ssh,NetworkManager,chronyd"
 # System bootloader configuration
 bootloader --location=boot
 # Need to create logical volume groups first then partition
-part /boot --fstype="vfat" --size 128 --label="BOOT" --asprimary
-part / --fstype="ext4" --size 1664 --grow --label="rootfs" --asprimary
+part /boot --fstype="vfat" --size 256 --label="BOOT" --asprimary
+part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 # Note: the --fsoptions & --fsprofile switches dont seem to work at all!
 #  <SIGH> Will have to edit fstab in %post :-(
 
@@ -55,6 +55,7 @@ part / --fstype="ext4" --size 1664 --grow --label="rootfs" --asprimary
 %packages --instLangs=en_US.utf8 --excludedocs
 @core
 kernel
+NetworkManager-wifi
 
 # DNF has 'issues' with time travel!
 chrony
@@ -65,6 +66,7 @@ fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-local
+brcm43430-firmware
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python-rpi-gpio
@@ -153,7 +155,7 @@ sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.
 ### Tweak boot options
 %post
 echo "Modifying cmdline.txt boot options"
-sed -i 's/nortc/elevator=deadline nortc libahci.ignore_sss=1 raid=noautodetect selinux=0/g' /boot/cmdline.txt
+sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect selinux=0/g' /boot/cmdline.txt
 
 # With no swap for 'mini' release we need to change our root partition
 sed -i 's|root=/dev/mmcblk0p3|root=/dev/mmcblk0p2|g' /boot/cmdline.txt

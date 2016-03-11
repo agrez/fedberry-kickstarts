@@ -94,6 +94,11 @@ touch /.rootfs-repartition
 sed -i s'/gpu_mem=32/gpu_mem=128/' /boot/config.txt
 %end
 
+%post
+# Set console framebuffer depth to 24bit
+sed -i s'/#framebuffer_depth=24/framebuffer_depth=24/' /boot/config.txt
+%end
+
 %packages
 @base-x
 @core
@@ -129,6 +134,7 @@ fedberry-release-notes
 fedberry-repo
 fedberry-local
 fedberry-config
+brcm43430-firmware
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python-rpi-gpio

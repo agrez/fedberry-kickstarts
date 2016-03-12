@@ -169,6 +169,12 @@ sed -i 's/ext4.*defaults/ext4    defaults,data=writeback/' /etc/fstab
 %end
 
 
+### Disable audio interface by default
+%post
+sed -i s'/dtparam=audio=on/#dtparam=audio=on/' /boot/config.txt
+%end
+
+
 ### Keep systemd's journal size under control
 %post
 echo "Setting systemd max journal size to 20M"

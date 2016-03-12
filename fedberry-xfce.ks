@@ -82,6 +82,14 @@ ln -s /usr/lib/systemd/system/initial-setup-graphical.service /etc/systemd/syste
 echo .
 %end
 
+# Enable fsck for rootfs & boot partitions
+%post
+echo "Enabling fsck for rootfs & boot partitions"
+#rootfs
+sed -i 's| \/ \(.*\)0 0| \/ \10 1|' /etc/fstab
+#boot
+sed -i 's| \/boot \(.*\)0 0| \/boot \10 2|' /etc/fstab
+%end
 
 # Grow root filesystem on first boot
 %post

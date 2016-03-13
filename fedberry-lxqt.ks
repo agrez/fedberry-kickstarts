@@ -175,7 +175,7 @@ sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.
 ### Tweak boot options
 %post
 echo "Modifying cmdline.txt boot options"
-sed -i 's/nortc/elevator=deadline nortc libahci.ignore_sss=1 raid=noautodetect/g' /boot/cmdline.txt
+sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect/g' /boot/cmdline.txt
 %end
 
 
@@ -205,13 +205,6 @@ sed -i -e s'/gpu_mem=32/gpu_mem=128/' /boot/config.txt
 ### Set console framebuffer depth to 24bit
 %post
 sed -i s'/#framebuffer_depth=24/framebuffer_depth=24/' /boot/config.txt
-%end
-
-
-### Edit fstab options manually
-%post
-echo "Modifying fstab options"
-sed -i 's/ext4.*defaults/ext4    defaults,data=writeback/' /etc/fstab
 %end
 
 

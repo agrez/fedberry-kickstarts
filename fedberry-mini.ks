@@ -66,7 +66,7 @@ fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-local
-brcm43430-firmware
+bcm43438-firmware
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python-rpi-gpio

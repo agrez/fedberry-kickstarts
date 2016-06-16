@@ -5,12 +5,12 @@ repo --name="fedora" --mirrorlist=http://mirrors.fedoraproject.org/metalink?repo
 repo --name="updates" --mirrorlist=http://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch --cost=1000
 
 # FedBerry stable
-repo --name="fedberry" --baseurl=http://download.fedberry.org/releases/23/packages/stable/RPMS/ --cost=800
-#repo --name="fedberry" --baseurl=https://vaughan.fedorapeople.org/releases/23/packages/stable/RPMS/ --cost=800
+repo --name="fedberry" --baseurl=http://download.fedberry.org/releases/$releasever/packages/armhfp/stable/ --cost=800
+#repo --name="fedberry" --baseurl=https://vaughan.fedorapeople.org/releases/$releasever/packages/armhfp/stable/ --cost=800
 
 # FedBerry Testing
-#repo --name="fedberry-testing" --baseurl=http://download.fedberry.org/releases/23/packages/testing/RPMS/ --cost=600
-#repo --name="fedberry-testing" --baseurl=https://vaughan.fedorapeople.org/releases/23/packages/testing/RPMS/ --cost=600
+#repo --name="fedberry-testing" --baseurl=http://download.fedberry.org/releases/$releasever/packages/armhfp/testing/ --cost=600
+#repo --name="fedberry-testing" --baseurl=https://vaughan.fedorapeople.org/releases/$releasever/packages/armhfp/testing/ --cost=600
 
 # Edit this with your own repository
 #repo --name="Local Repo" --baseurl=file:///path/to/folder/ --cost=600

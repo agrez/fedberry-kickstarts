@@ -56,7 +56,7 @@ part / --fstype="ext4" --size 3200 --grow --label=rootfs --asprimary
 @standard
 @lxqt
 @networkmanager-submodules
-kernel
+kernel-4.4.13-400.789e0e5.bcm2709.fc24.armv7hl
 alsa-plugins-pulseaudio
 lxmenu-data
 chrony

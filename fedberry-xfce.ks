@@ -130,7 +130,7 @@ dracut-config-generic
 gnome-keyring-pam
 initial-setup
 initial-setup-gui
-kernel
+kernel-4.4.13-400.789e0e5.bcm2709.fc24.armv7hl
 system-config-printer
 #uboot-images-armv7
 wget

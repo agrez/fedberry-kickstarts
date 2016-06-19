@@ -54,7 +54,7 @@ part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 
 %packages --instLangs=en_US.utf8 --excludedocs
 @core
-kernel
+kernel-4.4.13-400.789e0e5.bcm2709.fc24.armv7hl
 NetworkManager-wifi
 
 # DNF has 'issues' with time travel!

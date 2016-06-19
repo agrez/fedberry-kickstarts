@@ -41,7 +41,7 @@ services --disabled="network" --enabled="ssh,NetworkManager,chronyd"
 # System bootloader configuration
 bootloader --location=boot
 # Need to create logical volume groups first then partition
-part /boot --fstype="vfat" --size 256 --label="BOOT" --asprimary
+part /boot --fstype="vfat" --size 320 --label="BOOT" --asprimary
 part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 # Note: the --fsoptions & --fsprofile switches dont seem to work at all!
 #  <SIGH> Will have to edit fstab in %post :-(

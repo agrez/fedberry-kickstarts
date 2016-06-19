@@ -37,7 +37,7 @@ services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,Netw
 # NOTE: /boot and swap MUST use --asprimary to ensure '/' is the last partition in order for rootfs-resize to work.
 bootloader --location=boot
 # Need to create logical volume groups first then partition
-part /boot --fstype="vfat" --size 256 --label=BOOT --asprimary
+part /boot --fstype="vfat" --size 320 --label=BOOT --asprimary
 part swap --fstype="swap" --size 1024 --asprimary
 part / --fstype="ext4" --size 3200 --grow --label=rootfs --asprimary
 # Note: the --fsoptions & --fsprofile switches dont seem to work at all!

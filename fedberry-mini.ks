@@ -95,7 +95,7 @@ rm -f /var/lib/rpm/__db*
 releasever=24
 basearch=armhfp
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpi2
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedberry-$releasever-primary
 
 # Note that running rpm recreates the rpm db files which aren't needed or wanted
 rm -f /var/lib/rpm/__db*

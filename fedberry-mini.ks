@@ -72,6 +72,7 @@ raspberrypi-vc-utils
 raspberrypi-vc-libs
 python2-RPi.GPIO
 python3-RPi.GPIO
+bluetooth-rpi3
 
 # Packages to Remove
 -fedora-release

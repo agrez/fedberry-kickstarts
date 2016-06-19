@@ -98,6 +98,7 @@ raspberrypi-vc-utils
 raspberrypi-vc-libs
 python2-RPi.GPIO
 python3-RPi.GPIO
+bluetooth-rpi3
 
 # Add Generic logos & remove fedora packages.
 generic-logos

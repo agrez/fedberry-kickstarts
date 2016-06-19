@@ -143,7 +143,7 @@ generic-logos
 %post
 # Work around for poor key import UI in PackageKit
 rm -f /var/lib/rpm/__db*
-releasever=$(cat /etc/os-release |grep VERSION_ID |sed 's/VERSION_ID=//')
+releasever=24
 basearch=armhfp
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpi2

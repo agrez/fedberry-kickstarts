@@ -46,7 +46,7 @@ part / --fstype="ext4" --size 1200 --grow --fsoptions="noatime" --label=rootfs -
 %post
 # work around for poor key import UI in PackageKit
 rm -f /var/lib/rpm/__db*
-releasever=$(rpm -q --qf '%{version}\n' fedora-release)
+releasever=24
 basearch=armhfp
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 echo "Packages within this ARM disk image"

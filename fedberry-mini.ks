@@ -56,6 +56,7 @@ part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 @core
 kernel-4.4.13-400.789e0e5.bcm2709.fc24.armv7hl
 NetworkManager-wifi
+glibc-langpack-en
 
 # DNF has 'issues' with time travel!
 chrony

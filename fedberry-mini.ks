@@ -69,7 +69,8 @@ fedberry-local
 bcm43438-firmware
 raspberrypi-vc-utils
 raspberrypi-vc-libs
-python-rpi-gpio
+python2-RPi.GPIO
+python3-RPi.GPIO
 
 # Packages to Remove
 -fedora-release

@@ -158,9 +158,6 @@ sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.
 %post
 echo "Modifying cmdline.txt boot options"
 sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect selinux=0/g' /boot/cmdline.txt
-
-# With no swap for 'mini' release we need to change our root partition
-sed -i 's|root=/dev/mmcblk0p3|root=/dev/mmcblk0p2|g' /boot/cmdline.txt
 %end
 
 

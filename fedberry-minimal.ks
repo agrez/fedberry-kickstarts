@@ -38,7 +38,7 @@ bootloader --location=boot
 #zerombr
 #clearpart --all
 ## Need to create logical volume groups first then partition
-part /boot --fstype="vfat" --size 320 --label=BOOT --asprimary
+part /boot --fstype="vfat" --size 512 --label=BOOT --asprimary
 part swap --fstype="swap" --size 1000 --asprimary
 part / --fstype="ext4" --size 1200 --grow --fsoptions="noatime" --label=rootfs --asprimary
 

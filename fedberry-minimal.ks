@@ -23,7 +23,7 @@ selinux --enforcing
 # Installation logging level
 logging --level=info
 # System services
-services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd,rootfs-grow"
+services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd,rootfs-grow,initial-setup"
 
 
 #

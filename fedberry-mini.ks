@@ -32,14 +32,10 @@ rootpw fedberry
 # SELinux configuration
 selinux --disabled
 
-# Installation logging level
-logging --level=info
-
 # System services
 services --disabled="network" --enabled="ssh,NetworkManager,chronyd"
 
 # System bootloader configuration
-bootloader --location=boot
 # Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label="BOOT" --asprimary
 part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary

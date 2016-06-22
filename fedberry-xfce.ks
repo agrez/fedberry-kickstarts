@@ -12,12 +12,16 @@
 
 # System language
 lang en_US.UTF-8
+
 # Firewall configuration
 firewall --enabled --service=mdns,ssh
+
 # System authorization information
 auth --useshadow --passalgo=sha512
+
 # Run the Setup Agent on first boot
 firstboot --reconfig
+
 # SELinux configuration
 selinux --enforcing
 
@@ -32,9 +36,6 @@ services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,Netw
 #       the last partition in order for rootfs-resize to work.
 #
 # System bootloader configuration
-bootloader --location=boot
-#zerombr
-#clearpart --all
 
 ## Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label=BOOT --asprimary
@@ -45,10 +46,13 @@ part / --fstype="ext4" --size 3200 --grow --fsoptions="noatime" --label=rootfs -
 rm -f /var/lib/rpm/__db*
 releasever=24
 basearch=armhfp
+
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedberry-$releasever-primary
+
 echo "Packages within this ARM disk image"
 rpm -qa
+
 # Note that running rpm recreates the rpm db files which aren't needed or wanted
 rm -f /var/lib/rpm/__db*
 
@@ -60,10 +64,7 @@ rm -f /var/lib/systemd/random-seed
 echo "Disabling tmpfs for /tmp."
 systemctl mask tmp.mount
 
-#/usr/sbin/a-b-c
-
-yum -y remove dracut-config-generic
-
+dnf -y remove dracut-config-generic
 %end
 
 

@@ -12,16 +12,19 @@
 
 # System language
 lang en_US.UTF-8
+
 # Firewall configuration
 firewall --enabled --service=mdns,ssh
+
 # System authorization information
 auth --useshadow --enablemd5
+
 # Run the Setup Agent on first boot
 firstboot --reconfig
+
 # SELinux configuration
 selinux --enforcing
-# Installation logging level
-logging --level=info
+
 # System services
 services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,NetworkManager,avahi-daemon,rsyslog,chronyd,rootfs-grow,initial-setup"
 
@@ -34,9 +37,6 @@ services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,Netw
 #
 # System bootloader configuration
 
-bootloader --location=boot
-#zerombr
-#clearpart --all
 ## Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label=BOOT --asprimary
 part / --fstype="ext4" --size 1200 --grow --fsoptions="noatime" --label=rootfs --asprimary
@@ -47,10 +47,13 @@ part / --fstype="ext4" --size 1200 --grow --fsoptions="noatime" --label=rootfs -
 rm -f /var/lib/rpm/__db*
 releasever=24
 basearch=armhfp
+
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedberry-$releasever-primary
+
 echo "Packages within this ARM disk image"
 rpm -qa
+
 # Note that running rpm recreates the rpm db files which aren't needed or wanted
 rm -f /var/lib/rpm/__db*
 
@@ -61,9 +64,6 @@ rm -f /var/lib/systemd/random-seed
 # default of having /tmp on tmpfs.
 echo "Disabling tmpfs for /tmp."
 systemctl mask tmp.mount
-
-# Arm boot config
-#/usr/sbin/a-b-c
 
 yum -y remove dracut-config-generic
 %end

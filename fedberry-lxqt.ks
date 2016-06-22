@@ -38,7 +38,6 @@ services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,Netw
 bootloader --location=boot
 # Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label=BOOT --asprimary
-part swap --fstype="swap" --size 1024 --asprimary
 part / --fstype="ext4" --size 3200 --grow --label=rootfs --asprimary
 # Note: the --fsoptions & --fsprofile switches dont seem to work at all!
 #  <SIGH> Need to edit fstab in %post :-(
@@ -221,6 +220,17 @@ sed -i 's/single_click_activate=false/single_click_activate=true/' /etc/xdg/lxqt
 %post
 echo "Modifying lightdm defaults"
 sed -i 's|background=/usr/share/backgrounds/default.png|background=/usr/share/lxqt/themes/frost/numix.png|' /etc/lightdm/lightdm-gtk-greeter.conf
+%end
+
+
+### Create swap file
+%post
+echo "Creating 512 MB swap file..."
+dd if=/dev/zero of=/swapfile bs=1M count=512
+/usr/sbin/mkswap /swapfile
+#world readable swap files are a local vulnerability!
+chmod 600 /swapfile &>/dev/null
+echo "/swapfile swap swap defaults 0 0" >>/etc/fstab
 %end
 
 

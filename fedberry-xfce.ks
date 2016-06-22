@@ -38,7 +38,6 @@ bootloader --location=boot
 
 ## Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label=BOOT --asprimary
-part swap --fstype="swap" --size 1000 --asprimary
 part / --fstype="ext4" --size 3200 --grow --fsoptions="noatime" --label=rootfs --asprimary
 
 %post
@@ -107,6 +106,18 @@ sed -i s'/gpu_mem=32/gpu_mem=128/' /boot/config.txt
 # Set console framebuffer depth to 24bit
 sed -i s'/#framebuffer_depth=24/framebuffer_depth=24/' /boot/config.txt
 %end
+
+
+# Create swap file
+%post
+echo "Creating 512 MB swap file..."
+dd if=/dev/zero of=/swapfile bs=1M count=512
+/usr/sbin/mkswap /swapfile
+#world readable swap files are a local vulnerability!
+chmod 600 /swapfile &>/dev/null
+echo "/swapfile swap swap defaults 0 0" >>/etc/fstab
+%end
+
 
 %packages
 @base-x

@@ -39,7 +39,7 @@ services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="ssh,Netw
 
 ## Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label=BOOT --asprimary
-part / --fstype="ext4" --size 3200 --grow --fsoptions="noatime" --label=rootfs --asprimary
+part / --fstype="ext4" --size 3712 --grow --fsoptions="noatime" --label=rootfs --asprimary
 
 %post
 # work around for poor key import UI in PackageKit

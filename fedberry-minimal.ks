@@ -129,7 +129,6 @@ dracut-config-generic
 #extlinux-bootloader
 initial-setup
 kernel-4.4.13-400.789e0e5.bcm2709.fc24.armv7hl
-kernel-tools-4.4.13-400.789e0e5.bcm2709.fc24.armv7hl
 nano
 perf
 NetworkManager-wifi

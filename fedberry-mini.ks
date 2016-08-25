@@ -23,19 +23,21 @@ timezone US/Eastern
 firewall --disabled
 
 # System authorization information
-auth --useshadow --enablemd5
+auth --useshadow --passalgo=sha512
 rootpw fedberry
-
-#user --name=raspberry --password=$1$wxMhW7mr$YCUqK.ZGyNsfwY5V5Aib31 --iscrypted
-# Seems this is also broken at present, need to add a user manually in %post :-(
 
 # SELinux configuration
 selinux --disabled
 
 # System services
-services --disabled="network" --enabled="ssh,NetworkManager,chronyd"
+services --disabled="network"
 
-# System bootloader configuration
+
+#
+# Define how large you want your rootfs to be
+#
+# NOTE: /boot and swap MUST use --asprimary to ensure '/' is the last partition in order for rootfs-resize to work.
+
 # Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label="BOOT" --asprimary
 part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
@@ -50,7 +52,6 @@ part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 
 %packages --instLangs=en_US.utf8 --excludedocs
 @core
-kernel-4.4.13-400.789e0e5.bcm2709.fc24.armv7hl
 NetworkManager-wifi
 glibc-langpack-en
 
@@ -58,12 +59,14 @@ glibc-langpack-en
 chrony
 
 # FedBerry specific packages
-fedberry-config
+kernel-4.4.19-400.fea4885.bcm2709.fc24.armv7hl
+bcm283x-firmware
+bcm43438-firmware
 fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-local
-bcm43438-firmware
+fedberry-config
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python2-RPi.GPIO
@@ -71,8 +74,6 @@ python3-RPi.GPIO
 bluetooth-rpi3
 
 # Packages to Remove
--fedora-release
--fedora-release-notes
 -uboot-tools
 -gsettings-desktop-schemas
 -selinux-policy
@@ -88,10 +89,11 @@ bluetooth-rpi3
 
 ### RPM & dnf related tweaking
 %post
-# Work around for poor key import UI in PackageKit
-rm -f /var/lib/rpm/__db*
 releasever=24
 basearch=armhfp
+
+# Work around for poor key import UI in PackageKit
+rm -f /var/lib/rpm/__db*
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedberry-$releasever-primary
 
@@ -113,21 +115,9 @@ echo "deltarpm=0" >>/etc/dnf/dnf.conf
 %end
 
 
-### Create 'raspberry' user manually, as kickstart 'user' function seems to be broken!
+### Expire the current root password (forces new password on first login)
 %post
-echo "Creating user 'raspberry'"
-/sbin/useradd -m -p $(openssl passwd -1 raspberry) raspberry
-
-# Expire the current password & force new password on first login
-passwd -e raspberry
 passwd -e root
-%end
-
-
-### Disallow root logins via sshd (we need at least some resemblance of sceurity!)
-%post
-echo "Disabling root logins for sshd"
-sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 %end
 
 
@@ -148,16 +138,16 @@ ln -s /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
 %end
 
 
-#### Need to ensure have our custom rpi2 kernel & firmware NOT the fedora kernel & firmware
+#### Need to ensure have our custom rpi2/3 kernels & firmware NOT the fedora kernel & firmware
 %post
-sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.repos.d/fedora-updates.repo
+sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.repos.d/fedora*.repo
 %end
 
 
 ### Tweak boot options
 %post
 echo "Modifying cmdline.txt boot options"
-sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect selinux=0/g' /boot/cmdline.txt
+sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect selinux=0 audit=0/g' /boot/cmdline.txt
 %end
 
 
@@ -181,7 +171,7 @@ sed -i 's/#SystemMaxUse=/SystemMaxUse=20/' /etc/systemd/journald.conf
 %end
 
 
-### Need some more agressive space saving cleanups for 'mini' builds
+### Need some more agressive space saving cleanups for 'barebone' builds
 %post
 echo "Removing firewalld service"
 dnf -C -y autoremove firewalld

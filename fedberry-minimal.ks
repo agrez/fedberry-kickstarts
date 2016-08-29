@@ -133,7 +133,7 @@ ln -s /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
 
 ### Need to ensure have our custom rpi2/3 kernel & firmware
 %post
-sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware' /etc/yum.repos.d/fedora*.repo
+sed -i '/skip_if_unavailable=False/a exclude=kernel* bcm283x-firmware bluez' /etc/yum.repos.d/fedora*.repo
 %end
 
 

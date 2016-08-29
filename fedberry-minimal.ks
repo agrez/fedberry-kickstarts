@@ -69,7 +69,7 @@ policycoreutils
 #uboot-images-armv7
 
 # FedBerry specific packages
-kernel-4.4.19-400.fea4885.bcm2709.fc24.armv7hl
+kernel-4.4.19-401.5ba1281.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
 fedberry-release

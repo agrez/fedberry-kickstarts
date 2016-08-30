@@ -53,7 +53,6 @@ part / --fstype="ext4" --size 1824 --grow --fsoptions="noatime" --label=rootfs -
 @hardware-support
 #arm-boot-config
 chrony
-dosfstools
 dracut-config-generic
 #extlinux-bootloader
 initial-setup
@@ -67,6 +66,8 @@ timedatex
 trousers
 policycoreutils
 #uboot-images-armv7
+#vfat file system support tools
+dosfstools
 
 # FedBerry specific packages
 kernel-4.4.19-401.5ba1281.bcm2709.fc24.armv7hl

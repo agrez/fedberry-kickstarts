@@ -54,7 +54,8 @@ part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 @core
 NetworkManager-wifi
 glibc-langpack-en
-
+#vfat file system support tools
+dosfstools
 # DNF has 'issues' with time travel!
 chrony
 

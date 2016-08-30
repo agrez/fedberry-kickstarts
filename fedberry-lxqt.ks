@@ -72,6 +72,8 @@ yumex-dnf
 generic-logos
 xarchiver
 lxmenu-data
+#vfat file system support tools
+dosfstools
 
 ### @lxqt pulls in too many plasma desktop deps
 breeze-cursor-theme

@@ -29,9 +29,6 @@ firstboot --reconfig
 # SELinux configuration
 selinux --enforcing
 
-# Set root password
-rootpw fedberry
-
 # System services
 services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup,headless-check"
 
@@ -67,7 +64,6 @@ gamin
 gvfs
 gvfs-smb
 wget
-# yumex-dnf is buggy under arm for some reason (no problems under x86 arch!)
 yumex-dnf
 generic-logos
 xarchiver
@@ -133,7 +129,6 @@ fedberry-repo
 fedberry-local
 fedberry-config
 fedberry-selinux-policy
-fedberry-headless
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python2-RPi.GPIO
@@ -274,12 +269,6 @@ dd if=/dev/zero of=/swapfile bs=1M count=512
 #world readable swap files are a local vulnerability!
 chmod 600 /swapfile &>/dev/null
 echo "/swapfile swap swap defaults 0 0" >>/etc/fstab
-%end
-
-
-### Expire the current root password (forces new password on first login)
-%post
-passwd -e root
 %end
 
 

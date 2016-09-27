@@ -1,5 +1,5 @@
 ###
-# RELEASE = 1-beta1
+# RELEASE=1
 ###
 
 
@@ -48,7 +48,7 @@ part / --fstype="ext4" --size 1824 --grow --fsoptions="noatime" --label=rootfs -
 ###
 
 %packages
-# Fedora packages
+### Fedora packages
 @core
 @hardware-support
 #arm-boot-config
@@ -68,11 +68,17 @@ policycoreutils
 #uboot-images-armv7
 #vfat file system support tools
 dosfstools
+i2c-tools
 
-# FedBerry specific packages
-kernel-4.4.19-401.5ba1281.bcm2709.fc24.armv7hl
+#use known working selinux policy :-/
+selinux-policy-3.13.1-191.13.fc24.noarch
+selinux-policy-targeted-3.13.1-191.13.fc24.noarch
+
+### FedBerry specific packages
+kernel-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
+bcmstat
 fedberry-release
 fedberry-release-notes
 fedberry-repo
@@ -86,11 +92,14 @@ python2-RPi.GPIO
 python3-RPi.GPIO
 bluetooth-rpi3
 
-# Remove packages
+### Remove packages
 -@dial-up
 -@standard
 -initial-setup-gui
--uboot-tools
+
+#force removal of broken selinux policy :-/
+-selinux-policy-3.13.1-191.16.fc24.noarch
+-selinux-policy-targeted-3.13.1-191.16.fc24.noarch
 %end
 
 
@@ -201,7 +210,7 @@ mount -t tmpfs -o size=1 tmpfs /sys/fs/selinux
 umount /var/cache/yum
 
 echo "Relabeling filesystem"
-/usr/sbin/setfiles -F -e /proc -e /dev /etc/selinux/targeted/contexts/files/file_contexts /
+/usr/sbin/setfiles -F /etc/selinux/targeted/contexts/files/file_contexts /
 /usr/sbin/setfiles -F /etc/selinux/targeted/contexts/files/file_contexts.homedirs /home/ /root/
 
 umount -t tmpfs /sys/fs/selinux

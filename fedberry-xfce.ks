@@ -1,5 +1,5 @@
 ###
-# RELEASE = 1-beta1
+# RELEASE=1
 ###
 
 
@@ -30,7 +30,7 @@ firstboot --reconfig
 selinux --enforcing
 
 # System services
-services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup,headless-check"
+services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup"
 
 
 # System bootloader configuration
@@ -73,12 +73,16 @@ system-config-printer
 #uboot-images-armv7
 wget
 xscreensaver-extras
-generic-logos
 rfkill
 # make sure all locales are available for inital-setup
 glibc-all-langpacks
 #vfat file system support tools
 dosfstools
+i2c-tools
+
+#use known working selinux policy :-/
+selinux-policy-3.13.1-191.13.fc24.noarch
+selinux-policy-targeted-3.13.1-191.13.fc24.noarch
 
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev
@@ -92,29 +96,31 @@ mesa-dri-drivers
 glx-utils
 
 ### FedBerry specific packages
-kernel-4.4.19-401.5ba1281.bcm2709.fc24.armv7hl
-kernel-core-4.4.19-401.5ba1281.bcm2709.fc24.armv7hl
-kernel-modules-4.4.19-401.5ba1281.bcm2709.fc24.armv7hl
-kernel-modules-extra-4.4.19-401.5ba1281.bcm2709.fc24.armv7hl
+kernel-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
+kernel-core-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
+kernel-modules-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
+kernel-modules-extra-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
+bcmstat
+bluetooth-rpi3
 fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-local
 fedberry-config
 fedberry-selinux-policy
+fedberry-logos
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python2-RPi.GPIO
 python3-RPi.GPIO
-bluetooth-rpi3
 
 ### Remove misc packages
--kernel-4.6.7-300.fc24.armv7hl
--kernel-core-4.6.7-300.fc24.armv7hl
--kernel-modules-4.6.7-300.fc24.armv7hl
--kernel-modules-extra-4.6.7-300.fc24.armv7hl
+-kernel-4.7.4-200.fc24.armv7hl
+-kernel-core-4.7.4-200.fc24.armv7hl
+-kernel-modules-4.7.4-200.fc24.armv7hl
+-kernel-modules-extra-4.7.4-200.fc24.armv7hl
 -fedora-logos
 -fedora-release
 -fedora-release-notes
@@ -125,8 +131,11 @@ bluetooth-rpi3
 -desktop-backgrounds-basic
 -gimp-help
 -realmd
--uboot-tools
 -xfce4-sensors-plugin
+
+#force removal of broken selinux policy :-/
+-selinux-policy-3.13.1-191.16.fc24.noarch
+-selinux-policy-targeted-3.13.1-191.16.fc24.noarch
 %end
 
 
@@ -154,7 +163,7 @@ rm -f /var/lib/systemd/random-seed
 
 ### Remove various packages that refuse to not install themselves in the %packages sections :-/
 %post
-dnf -y remove dracut-config-rescue uboot-tools
+dnf -y remove dracut-config-rescue
 %end
 
 
@@ -260,7 +269,7 @@ mount -t tmpfs -o size=1 tmpfs /sys/fs/selinux
 umount /var/cache/yum
 
 echo "Relabeling filesystem"
-/usr/sbin/setfiles -F -e /proc -e /dev /etc/selinux/targeted/contexts/files/file_contexts /
+/usr/sbin/setfiles -F /etc/selinux/targeted/contexts/files/file_contexts /
 /usr/sbin/setfiles -F /etc/selinux/targeted/contexts/files/file_contexts.homedirs /home/ /root/
 
 umount -t tmpfs /sys/fs/selinux

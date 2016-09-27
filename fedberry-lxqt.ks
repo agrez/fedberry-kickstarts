@@ -1,5 +1,5 @@
 ###
-# RELEASE = 1-beta1
+# RELEASE=1
 ###
 
 
@@ -30,7 +30,7 @@ firstboot --reconfig
 selinux --enforcing
 
 # System services
-services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup,headless-check"
+services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup"
 
 
 # System bootloader configuration
@@ -53,6 +53,7 @@ part / --fstype="ext4" --size 3200 --grow --label=rootfs --asprimary
 @fonts
 @input-methods
 @standard
+@printing
 @networkmanager-submodules
 alsa-plugins-pulseaudio
 chrony
@@ -64,12 +65,14 @@ gamin
 gvfs
 gvfs-smb
 wget
-yumex-dnf
-generic-logos
-xarchiver
+#yumex-dnf #from Fedberry packages
 lxmenu-data
+# make sure all locales are available for inital-setup
+glibc-all-langpacks
 #vfat file system support tools
 dosfstools
+i2c-tools
+setroubleshoot
 
 ### @lxqt pulls in too many plasma desktop deps
 breeze-cursor-theme
@@ -78,7 +81,7 @@ breeze-icon-theme
 firewall-config
 lxqt-admin
 lxqt-about
-lxqt-common
+#lxqt-common # from Fedberry packages
 lxqt-config
 lxqt-config-randr
 lxqt-globalkeys
@@ -89,24 +92,31 @@ lxqt-policykit
 lxqt-powermanagement
 lxqt-qtplugin
 lxqt-runner
-lxqt-session
+#lxqt-session #from Fedberry packages
+lxqt-sudo
 lxqt-wallet
 network-manager-applet
 nm-connection-editor
 notification-daemon
-obconf
 openbox
 pcmanfm-qt
 perl-File-MimeInfo
-qterminal-qt5
 qupzilla
 upower
 xdg-user-dirs
-lximage-qt
+trojita
+lxtask
+xarchiver
+xscreensaver-extras
+abiword
+gnumeric
 #kwin & sddm pull in too many plasma desktop deps
 #sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323). Workarounds don't seem to help.
 #sddm also doesn't (yet?) support XDMCP.
 
+#use known working selinux policy :-/
+selinux-policy-3.13.1-191.13.fc24.noarch
+selinux-policy-targeted-3.13.1-191.13.fc24.noarch
 
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev
@@ -120,31 +130,46 @@ mesa-dri-drivers
 glx-utils
 
 ### FedBerry specific packages
-kernel-4.4.19-401.5ba1281.bcm2709.fc24.armv7hl
+kernel-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
+bcmstat
+bluetooth-rpi3
 fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-local
 fedberry-config
 fedberry-selinux-policy
+fedberry-logos
 raspberrypi-vc-utils
 raspberrypi-vc-libs
 python2-RPi.GPIO
 python3-RPi.GPIO
-bluetooth-rpi3
+lxqt-common
+lxqt-theme-fedberry
+lxqt-session
 featherpad
 compton
+compton-conf
+lximage-qt
+qlipper
+qpdfview
+obconf-qt
+yumex-dnf
+qterminal-qt5
 
 ### Packages to Remove
 -fedora-release
 -fedora-release-notes
--fedora-logos
 -fprintd-pam
 -ibus-typing-booster
 -pcmciautils
 -qterminal
+
+#force removal of broken selinux policy :-/
+-selinux-policy-3.13.1-191.16.fc24.noarch
+-selinux-policy-targeted-3.13.1-191.16.fc24.noarch
 
 ### Unwanted fonts
 -lohit-*
@@ -193,8 +218,16 @@ rm -f /var/lib/systemd/random-seed
 
 ### Remove various packages that refuse to not install themselves in the %packages sections :-/
 %post
-dnf -y remove dracut-config-rescue uboot-tools
+dnf -y remove dracut-config-rescue
 %end
+
+
+### Enable initial-setup gui mode
+%post
+echo "Enabling initial-setup gui mode on startup"
+ln -s /usr/lib/systemd/system/initial-setup-graphical.service /etc/systemd/system/graphical.target.wants/initial-setup-graphical.service
+%end
+
 
 ### Having /tmp on tmpfs is enabled as this helps extend lifespan of sd cards
 # However, size should be limited to 100M.
@@ -247,17 +280,23 @@ sed -i s'/#framebuffer_depth=24/framebuffer_depth=24/' /boot/config.txt
 %end
 
 
-### Edit some lxqt default options
+### Edit some default options
 %post
-echo "Modifying LXQt defaults"
-sed -i 's/single_click_activate=false/single_click_activate=true/' /etc/xdg/lxqt/lxqt.conf
-%end
+echo "Modifying openbox defaults"
+# update openbox theme & number of desktops
+sed -i -e 's/Clearlooks/Bear2/' -e 's|<number>4</number>|<number>2</number>|' /etc/xdg/openbox/rc.xml
 
+echo "Modifying xscreensaver defaults"
+sed -i -e 's|mode:\(.*\)random|mode:\1blank|' -e 's|lock:\(.*\)True|lock:\1False|' /etc/xscreensaver/XScreenSaver.ad.header
+/usr/sbin/update-xscreensaver-hacks
 
-### Edit some lightdm default options
-%post
-echo "Modifying lightdm defaults"
-sed -i 's|background=/usr/share/backgrounds/default.png|background=/usr/share/lxqt/themes/frost/numix.png|' /etc/lightdm/lightdm-gtk-greeter.conf
+echo "Creating x-lxqt-mimeapps.list defaults"
+cat >/etc/xdg/x-lxqt-mimeapps.list<<EOF
+[Default Applications]
+text/plain=featherpad.desktop
+[Added Associations]
+text/plain=featherpad.desktop;
+EOF
 %end
 
 
@@ -297,7 +336,7 @@ mount -t tmpfs -o size=1 tmpfs /sys/fs/selinux
 umount /var/cache/yum
 
 echo "Relabeling filesystem"
-/usr/sbin/setfiles -F -e /proc -e /dev /etc/selinux/targeted/contexts/files/file_contexts /
+/usr/sbin/setfiles -F /etc/selinux/targeted/contexts/files/file_contexts /
 /usr/sbin/setfiles -F /etc/selinux/targeted/contexts/files/file_contexts.homedirs /home/ /root/
 
 umount -t tmpfs /sys/fs/selinux

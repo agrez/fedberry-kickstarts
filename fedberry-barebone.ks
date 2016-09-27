@@ -1,5 +1,5 @@
 ###
-# RELEASE = 1-beta1
+# RELEASE=1
 ###
 
 
@@ -56,13 +56,16 @@ NetworkManager-wifi
 glibc-langpack-en
 #vfat file system support tools
 dosfstools
+i2c-tools
+
 # DNF has 'issues' with time travel!
 chrony
 
 # FedBerry specific packages
-kernel-4.4.19-401.5ba1281.bcm2709.fc24.armv7hl
+kernel-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
+bcmstat
 fedberry-release
 fedberry-release-notes
 fedberry-repo
@@ -75,7 +78,6 @@ python3-RPi.GPIO
 bluetooth-rpi3
 
 # Packages to Remove
--uboot-tools
 -gsettings-desktop-schemas
 -selinux-policy
 -selinux-policy-targeted

@@ -1,5 +1,5 @@
 ###
-# RELEASE=1
+# RELEASE=1-rc1
 ###
 
 
@@ -73,6 +73,7 @@ glibc-all-langpacks
 dosfstools
 i2c-tools
 setroubleshoot
+system-config-printer
 
 ### @lxqt pulls in too many plasma desktop deps
 breeze-cursor-theme
@@ -92,9 +93,11 @@ lxqt-policykit
 lxqt-powermanagement
 lxqt-qtplugin
 lxqt-runner
-#lxqt-session #from Fedberry packages
+lxqt-session
 lxqt-sudo
 lxqt-wallet
+lximage-qt
+lxtask
 network-manager-applet
 nm-connection-editor
 notification-daemon
@@ -105,18 +108,18 @@ qupzilla
 upower
 xdg-user-dirs
 trojita
-lxtask
 xarchiver
 xscreensaver-extras
 abiword
 gnumeric
+transmission-qt
 #kwin & sddm pull in too many plasma desktop deps
 #sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323). Workarounds don't seem to help.
 #sddm also doesn't (yet?) support XDMCP.
 
 #use known working selinux policy :-/
-selinux-policy-3.13.1-191.13.fc24.noarch
-selinux-policy-targeted-3.13.1-191.13.fc24.noarch
+#selinux-policy-3.13.1-191.13.fc24.noarch
+#selinux-policy-targeted-3.13.1-191.13.fc24.noarch
 
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev
@@ -130,7 +133,7 @@ mesa-dri-drivers
 glx-utils
 
 ### FedBerry specific packages
-kernel-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
+kernel-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
 bcmstat
@@ -146,18 +149,17 @@ raspberrypi-vc-utils
 raspberrypi-vc-libs
 python2-RPi.GPIO
 python3-RPi.GPIO
+wiringpi
 lxqt-common
 lxqt-theme-fedberry
-lxqt-session
 featherpad
 compton
 compton-conf
-lximage-qt
 qlipper
 qpdfview
 obconf-qt
 yumex-dnf
-qterminal-qt5
+qterminal
 
 ### Packages to Remove
 -fedora-release
@@ -165,11 +167,10 @@ qterminal-qt5
 -fprintd-pam
 -ibus-typing-booster
 -pcmciautils
--qterminal
 
 #force removal of broken selinux policy :-/
--selinux-policy-3.13.1-191.16.fc24.noarch
--selinux-policy-targeted-3.13.1-191.16.fc24.noarch
+#-selinux-policy-3.13.1-191.16.fc24.noarch
+#-selinux-policy-targeted-3.13.1-191.16.fc24.noarch
 
 ### Unwanted fonts
 -lohit-*
@@ -284,7 +285,7 @@ sed -i s'/#framebuffer_depth=24/framebuffer_depth=24/' /boot/config.txt
 %post
 echo "Modifying openbox defaults"
 # update openbox theme & number of desktops
-sed -i -e 's/Clearlooks/Bear2/' -e 's|<number>4</number>|<number>2</number>|' /etc/xdg/openbox/rc.xml
+sed -i -e 's/Clearlooks/Bear2/' /etc/xdg/openbox/rc.xml
 
 echo "Modifying xscreensaver defaults"
 sed -i -e 's|mode:\(.*\)random|mode:\1blank|' -e 's|lock:\(.*\)True|lock:\1False|' /etc/xscreensaver/XScreenSaver.ad.header

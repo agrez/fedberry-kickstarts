@@ -1,5 +1,5 @@
 ###
-# RELEASE=1
+# RELEASE=1-rc1
 ###
 
 
@@ -62,7 +62,7 @@ i2c-tools
 chrony
 
 # FedBerry specific packages
-kernel-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
+kernel-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
 bcmstat
@@ -76,6 +76,7 @@ raspberrypi-vc-libs
 python2-RPi.GPIO
 python3-RPi.GPIO
 bluetooth-rpi3
+wiringpi
 
 # Packages to Remove
 -gsettings-desktop-schemas
@@ -182,7 +183,17 @@ dnf -C -y autoremove firewalld
 echo "Removing linux-firmware"
 # Note: At some point firmware will get pulled back in when the kernel is updated.
 rpm -e --nodeps linux-firmware
+%end
 
+# Ugggh.... this is a hacky workaround! Since linux-firmware now contains brcmfmac43430-sdio.bin,
+# we can't include it in bcm43438-firmware (it conflicts). Just install manually for now :-/
+%post --nochroot
+echo "Installing brcmfmac43430 firmware"
+curl -o $INSTALL_ROOT/usr/lib/firmware/brcm/brcmfmac43430-sdio.bin http://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/plain/brcm/brcmfmac43430-sdio.bin
+chmod 644 $INSTALL_ROOT/usr/lib/firmware/brcm/brcmfmac43430-sdio.bin
+%end
+
+%post
 echo "cleaning yumdb"
 rm -rf /var/lib/yum/yumdb/*
 

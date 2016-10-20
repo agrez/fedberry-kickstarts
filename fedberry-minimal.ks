@@ -1,5 +1,5 @@
 ###
-# RELEASE=1
+# RELEASE=1-rc1
 ###
 
 
@@ -71,11 +71,11 @@ dosfstools
 i2c-tools
 
 #use known working selinux policy :-/
-selinux-policy-3.13.1-191.13.fc24.noarch
-selinux-policy-targeted-3.13.1-191.13.fc24.noarch
+#selinux-policy-3.13.1-191.13.fc24.noarch
+#selinux-policy-targeted-3.13.1-191.13.fc24.noarch
 
 ### FedBerry specific packages
-kernel-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
+kernel-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
 bcmstat
@@ -91,6 +91,7 @@ raspberrypi-vc-libs
 python2-RPi.GPIO
 python3-RPi.GPIO
 bluetooth-rpi3
+wiringpi
 
 ### Remove packages
 -@dial-up
@@ -98,8 +99,8 @@ bluetooth-rpi3
 -initial-setup-gui
 
 #force removal of broken selinux policy :-/
--selinux-policy-3.13.1-191.16.fc24.noarch
--selinux-policy-targeted-3.13.1-191.16.fc24.noarch
+#-selinux-policy-3.13.1-191.17.fc24.noarch
+#-selinux-policy-targeted-3.13.1-191.17.fc24.noarch
 %end
 
 

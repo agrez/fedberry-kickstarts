@@ -1,5 +1,5 @@
 ###
-# RELEASE=1
+# RELEASE=1-rc1
 ###
 
 
@@ -81,8 +81,8 @@ dosfstools
 i2c-tools
 
 #use known working selinux policy :-/
-selinux-policy-3.13.1-191.13.fc24.noarch
-selinux-policy-targeted-3.13.1-191.13.fc24.noarch
+#selinux-policy-3.13.1-191.13.fc24.noarch
+#selinux-policy-targeted-3.13.1-191.13.fc24.noarch
 
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev
@@ -96,10 +96,10 @@ mesa-dri-drivers
 glx-utils
 
 ### FedBerry specific packages
-kernel-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
-kernel-core-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
-kernel-modules-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
-kernel-modules-extra-4.4.21-400.2d31cd5.bcm2709.fc24.armv7hl
+kernel-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
+kernel-core-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
+kernel-modules-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
+kernel-modules-extra-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
 bcmstat
@@ -115,12 +115,13 @@ raspberrypi-vc-utils
 raspberrypi-vc-libs
 python2-RPi.GPIO
 python3-RPi.GPIO
+wiringpi
 
 ### Remove misc packages
--kernel-4.7.4-200.fc24.armv7hl
--kernel-core-4.7.4-200.fc24.armv7hl
--kernel-modules-4.7.4-200.fc24.armv7hl
--kernel-modules-extra-4.7.4-200.fc24.armv7hl
+-kernel-4.7.7-200.fc24.armv7hl
+-kernel-core-4.7.7-200.fc24.armv7hl
+-kernel-modules-4.7.7-200.fc24.armv7hl
+-kernel-modules-extra-4.7.7-200.fc24.armv7hl
 -fedora-logos
 -fedora-release
 -fedora-release-notes
@@ -134,8 +135,8 @@ python3-RPi.GPIO
 -xfce4-sensors-plugin
 
 #force removal of broken selinux policy :-/
--selinux-policy-3.13.1-191.16.fc24.noarch
--selinux-policy-targeted-3.13.1-191.16.fc24.noarch
+#-selinux-policy-3.13.1-191.16.fc24.noarch
+#-selinux-policy-targeted-3.13.1-191.16.fc24.noarch
 %end
 
 

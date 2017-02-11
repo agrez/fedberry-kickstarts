@@ -62,20 +62,21 @@ i2c-tools
 chrony
 
 # FedBerry specific packages
-kernel-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
 bcm283x-firmware
 bcm43438-firmware
 bcmstat
+bluetooth-rpi3
+fake-hwclock
+fedberry-config
+fedberry-local
 fedberry-release
 fedberry-release-notes
 fedberry-repo
-fedberry-local
-fedberry-config
-raspberrypi-vc-utils
-raspberrypi-vc-libs
+kernel
 python2-RPi.GPIO
 python3-RPi.GPIO
-bluetooth-rpi3
+raspberrypi-vc-libs
+raspberrypi-vc-utils
 wiringpi
 
 # Packages to Remove

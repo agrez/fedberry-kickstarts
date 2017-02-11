@@ -70,37 +70,34 @@ policycoreutils
 dosfstools
 i2c-tools
 
-#use known working selinux policy :-/
-#selinux-policy-3.13.1-191.13.fc24.noarch
-#selinux-policy-targeted-3.13.1-191.13.fc24.noarch
+#Our kernel now has no dependency on linux-firmware as all essential firmware
+#is included in release images. This helps minimise barebone image size.
+linux-firmware
 
-### FedBerry specific packages
-kernel-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
+# FedBerry specific packages
 bcm283x-firmware
 bcm43438-firmware
 bcmstat
+bluetooth-rpi3
+fake-hwclock
+fedberry-config
+fedberry-headless
+fedberry-local
 fedberry-release
 fedberry-release-notes
 fedberry-repo
-fedberry-local
-fedberry-config
 fedberry-selinux-policy
-fedberry-headless
-raspberrypi-vc-utils
-raspberrypi-vc-libs
+kernel
 python2-RPi.GPIO
 python3-RPi.GPIO
-bluetooth-rpi3
+raspberrypi-vc-libs
+raspberrypi-vc-utils
 wiringpi
 
 ### Remove packages
 -@dial-up
 -@standard
 -initial-setup-gui
-
-#force removal of broken selinux policy :-/
-#-selinux-policy-3.13.1-191.17.fc24.noarch
-#-selinux-policy-targeted-3.13.1-191.17.fc24.noarch
 %end
 
 

@@ -80,10 +80,6 @@ glibc-all-langpacks
 dosfstools
 i2c-tools
 
-#use known working selinux policy :-/
-#selinux-policy-3.13.1-191.13.fc24.noarch
-#selinux-policy-targeted-3.13.1-191.13.fc24.noarch
-
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev
 xorg-x11-drv-modesetting
@@ -95,33 +91,31 @@ xorg-x11-drv-fbdev
 mesa-dri-drivers
 glx-utils
 
-### FedBerry specific packages
-kernel-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
-kernel-core-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
-kernel-modules-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
-kernel-modules-extra-4.4.24-400.a59ca8f.bcm2709.fc24.armv7hl
+#Our kernel now has no dependency on linux-firmware as all essential firmware
+#is included in release images. This helps minimise barebone image size.
+linux-firmware
+
+### FedBerry base specific packages
 bcm283x-firmware
 bcm43438-firmware
 bcmstat
 bluetooth-rpi3
+fake-hwclock
+fedberry-config
+fedberry-local
+fedberry-logos
 fedberry-release
 fedberry-release-notes
 fedberry-repo
-fedberry-local
-fedberry-config
 fedberry-selinux-policy
-fedberry-logos
-raspberrypi-vc-utils
-raspberrypi-vc-libs
+kernel
 python2-RPi.GPIO
 python3-RPi.GPIO
+raspberrypi-vc-libs
+raspberrypi-vc-utils
 wiringpi
 
 ### Remove misc packages
--kernel-4.7.7-200.fc24.armv7hl
--kernel-core-4.7.7-200.fc24.armv7hl
--kernel-modules-4.7.7-200.fc24.armv7hl
--kernel-modules-extra-4.7.7-200.fc24.armv7hl
 -fedora-logos
 -fedora-release
 -fedora-release-notes
@@ -133,11 +127,6 @@ wiringpi
 -gimp-help
 -realmd
 -xfce4-sensors-plugin
-
-#force removal of broken selinux policy :-/
-#-selinux-policy-3.13.1-191.16.fc24.noarch
-#-selinux-policy-targeted-3.13.1-191.16.fc24.noarch
-%end
 
 
 ###

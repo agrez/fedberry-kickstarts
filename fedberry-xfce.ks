@@ -254,22 +254,8 @@ rm -f /var/tmp/zeros
 %end
 
 
-### Misc work around(s) for selinux troubles! :-/
+### Remove machine-id on pre generated images
 %post
-# fixes chronyd avc denial (net-pf-10)
-echo "Toggle selinux domain_kernel_load_modules boolean"
-/usr/sbin/setsebool -P domain_kernel_load_modules 1
-
-# Relabel filesystem as it fails to do this after %post
-# Needs to be the last %post action to catch any files we've created/modified.
-# Also replaces /var/cache/yum with a fake mount after relabelling.
-mount -t tmpfs -o size=1 tmpfs /sys/fs/selinux
-umount /var/cache/yum
-
-echo "Relabeling filesystem"
-/usr/sbin/setfiles -F /etc/selinux/targeted/contexts/files/file_contexts /
-/usr/sbin/setfiles -F /etc/selinux/targeted/contexts/files/file_contexts.homedirs /home/ /root/
-
-umount -t tmpfs /sys/fs/selinux
-mount -t tmpfs -o size=1 tmpfs /var/cache/yum
+rm -f /etc/machine-id
+touch /etc/machine-id
 %end

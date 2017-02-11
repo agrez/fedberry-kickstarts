@@ -192,6 +192,14 @@ curl -o $INSTALL_ROOT/usr/lib/firmware/brcm/brcmfmac43430-sdio.bin http://git.ke
 chmod 644 $INSTALL_ROOT/usr/lib/firmware/brcm/brcmfmac43430-sdio.bin
 %end
 
+
+### Remove machine-id on pre generated images
+%post
+rm -f /etc/machine-id
+touch /etc/machine-id
+%end
+
+
 %post
 echo "cleaning yumdb"
 rm -rf /var/lib/yum/yumdb/*

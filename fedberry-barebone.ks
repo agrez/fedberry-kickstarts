@@ -30,7 +30,7 @@ rootpw fedberry
 selinux --disabled
 
 # System services
-services --disabled="network"
+services --disabled="network" --enabled="fake-hwclock"
 
 
 #

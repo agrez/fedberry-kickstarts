@@ -29,7 +29,7 @@ selinux --enforcing
 rootpw fedberry
 
 # System services
-services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup,headless-check"
+services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup,headless-check,fake-hwclock"
 
 
 #

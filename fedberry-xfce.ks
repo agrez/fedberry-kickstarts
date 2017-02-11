@@ -30,7 +30,7 @@ firstboot --reconfig
 selinux --enforcing
 
 # System services
-services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup"
+services --disabled="network,lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup,fake-hwclock"
 
 
 # System bootloader configuration

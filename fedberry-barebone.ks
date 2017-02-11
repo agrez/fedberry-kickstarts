@@ -156,10 +156,6 @@ sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect selinux=0 audit=0/g
 %end
 
 
-### Edit fstab options manually
-%post
-echo "Modifying fstab options"
-sed -i 's/ext4.*defaults/ext4    defaults,data=writeback/' /etc/fstab
 %end
 
 

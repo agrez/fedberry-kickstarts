@@ -127,6 +127,7 @@ wiringpi
 -gimp-help
 -realmd
 -xfce4-sensors-plugin
+%end
 
 
 ###

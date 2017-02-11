@@ -1,5 +1,5 @@
 ###
-# RELEASE=1-rc1
+# RELEASE=1-alpha1
 ###
 
 
@@ -111,7 +111,7 @@ wiringpi
 
 ### RPM & dnf related tweaking
 %post
-releasever=24
+releasever=25
 basearch=armhfp
 
 # Work around for poor key import UI in PackageKit

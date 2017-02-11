@@ -152,6 +152,14 @@ rm -f /boot/uI*
 %end
 
 
+### Enable usb boot support for RPi3
+%post --nochroot
+echo "Use PARTUUID in /boot/cmdline.txt"
+PARTUUID=$(/usr/sbin/blkid -s PARTUUID |awk '/loop0p2/ { print $2 }' |sed 's/"//g')
+sed -i "s|/dev/mmcblk0p2|$PARTUUID|" $INSTALL_ROOT/boot/cmdline.txt
+%end
+
+
 ### Enable fsck for rootfs & boot partitions
 %post
 echo "Enabling fsck for rootfs & boot partitions"

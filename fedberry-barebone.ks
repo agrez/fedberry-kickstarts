@@ -180,11 +180,8 @@ sed -i 's/#SystemMaxUse=/SystemMaxUse=20/' /etc/systemd/journald.conf
 %post
 echo "Removing firewalld service"
 dnf -C -y autoremove firewalld
-
-echo "Removing linux-firmware"
-# Note: At some point firmware will get pulled back in when the kernel is updated.
-rpm -e --nodeps linux-firmware
 %end
+
 
 # Ugggh.... this is a hacky workaround! Since linux-firmware now contains brcmfmac43430-sdio.bin,
 # we can't include it in bcm43438-firmware (it conflicts). Just install manually for now :-/

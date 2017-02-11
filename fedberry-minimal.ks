@@ -152,6 +152,13 @@ rm -f /boot/uI*
 %end
 
 
+### Tweak boot options
+%post
+echo "Modifying cmdline.txt boot options"
+sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect/g' /boot/cmdline.txt
+%end
+
+
 ### Enable usb boot support for RPi3
 %post --nochroot
 echo "Use PARTUUID in /boot/cmdline.txt"

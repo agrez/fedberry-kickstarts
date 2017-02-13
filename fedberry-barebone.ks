@@ -200,6 +200,13 @@ touch /etc/machine-id
 %end
 
 
+### Disable network service here. Doing it in services line fails due to RHBZ #1369794
+%post
+/sbin/chkconfig network off
+%end
+
+
+### Some space saving cleanups
 %post
 echo "cleaning yumdb"
 rm -rf /var/lib/yum/yumdb/*

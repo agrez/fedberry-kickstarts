@@ -201,17 +201,23 @@ passwd -e root
 %end
 
 
+### Remove machine-id on pre generated images
+%post
+rm -f /etc/machine-id
+touch /etc/machine-id
+%end
+
+
+### Disable network service here. Doing it in services line fails due to RHBZ #1369794
+%post
+/sbin/chkconfig network off
+%end
+
+
 ### Some space saving cleanups
 %post
 echo "Zeroing out empty space."
 # This forces the filesystem to reclaim space from deleted files
 dd bs=1M if=/dev/zero of=/var/tmp/zeros || :
 rm -f /var/tmp/zeros
-%end
-
-
-### Remove machine-id on pre generated images
-%post
-rm -f /etc/machine-id
-touch /etc/machine-id
 %end

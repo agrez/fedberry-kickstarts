@@ -80,6 +80,14 @@ glibc-all-langpacks
 dosfstools
 i2c-tools
 
+# workaround for consequence of RHBZ #1324623: without this, with
+# yum-based creation tools, compose fails due to conflict between
+# libcrypt and libcrypt-nss. dnf does not seem to have the same
+# issue, so this may be dropped when appliance-creator is ported
+# to dnf.
+libcrypt-nss
+-libcrypt
+
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev
 xorg-x11-drv-modesetting
@@ -114,6 +122,15 @@ python3-RPi.GPIO
 raspberrypi-vc-libs
 raspberrypi-vc-utils
 wiringpi
+
+#newer firefox armv7hl builds are broken :-/
+#newer nss releases conflict with old firefox
+-nss-3.28.1-1.3.fc25.armv7hl
+-nss-sysinit-3.28.1-1.3.fc25.armv7hl
+-nss-tools-3.28.1-1.3.fc25.armv7hl
+nss-3.27.0-1.1.fc25.armv7hl
+nss-sysinit-3.27.0-1.1.fc25.armv7hl
+nss-tools-3.27.0-1.1.fc25.armv7hl
 
 ### Remove misc packages
 -fedora-logos

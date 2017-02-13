@@ -224,10 +224,10 @@ dnf -y remove dracut-config-rescue
 %end
 
 
-### Enable initial-setup gui mode
+### Explicitly set graphical.target as default as this is how initial-setup detects which version to run
 %post
-echo "Enabling initial-setup gui mode on startup"
-ln -s /usr/lib/systemd/system/initial-setup-graphical.service /etc/systemd/system/graphical.target.wants/initial-setup-graphical.service
+echo "Setting graphical.target as default"
+ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
 %end
 
 

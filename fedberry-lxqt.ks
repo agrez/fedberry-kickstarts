@@ -349,6 +349,13 @@ echo "/swapfile swap swap defaults 0 0" >>/etc/fstab
 %end
 
 
+### Remove machine-id on pre generated images
+%post
+rm -f /etc/machine-id
+touch /etc/machine-id
+%end
+
+
 ### Some space saving cleanups
 %post
 echo "cleaning yumdb"
@@ -358,11 +365,4 @@ echo "Zeroing out empty space."
 # This forces the filesystem to reclaim space from deleted files
 dd bs=1M if=/dev/zero of=/var/tmp/zeros || :
 rm -f /var/tmp/zeros
-%end
-
-
-### Remove machine-id on pre generated images
-%post
-rm -f /etc/machine-id
-touch /etc/machine-id
 %end

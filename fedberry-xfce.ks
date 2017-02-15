@@ -124,6 +124,7 @@ raspberrypi-vc-libs
 raspberrypi-vc-utils
 wiringpi
 
+
 #newer firefox armv7hl builds are broken :-/
 #newer nss releases conflict with old firefox
 -nss-3.28.1-1.3.fc25.armv7hl
@@ -280,6 +281,13 @@ sed -i 's/use_compositing=true/use_compositing=false/' /usr/share/xfwm4/defaults
 %end
 
 
+### Remove machine-id on pre generated images
+%post
+rm -f /etc/machine-id
+touch /etc/machine-id
+%end
+
+
 ### Some space saving cleanups
 %post
 echo "cleaning yumdb"
@@ -289,11 +297,4 @@ echo "Zeroing out empty space."
 # This forces the filesystem to reclaim space from deleted files
 dd bs=1M if=/dev/zero of=/var/tmp/zeros || :
 rm -f /var/tmp/zeros
-%end
-
-
-### Remove machine-id on pre generated images
-%post
-rm -f /etc/machine-id
-touch /etc/machine-id
 %end

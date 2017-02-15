@@ -119,6 +119,7 @@ transmission-qt
 
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev
+xorg-x11-drv-fbturbo
 xorg-x11-drv-modesetting
 xorg-x11-xauth
 xorg-x11-xinit
@@ -287,6 +288,19 @@ sed -i -e s'/gpu_mem=32/gpu_mem=128/' /boot/config.txt
 ### Set console framebuffer depth to 24bit
 %post
 sed -i s'/#framebuffer_depth=24/framebuffer_depth=24/' /boot/config.txt
+%end
+
+
+### Default to using fbturbo xorg driver (vc4 is still too buggy)
+%post
+cat > /etc/X11/xorg.conf.d/20-fbturbo.conf <<EOF
+Section "Device"
+    Identifier "Raspberry Pi FBDEV"
+    Driver "fbturbo"
+    Option "fbdev" "/dev/fb0"
+    Option "SwapbuffersWait" "true"
+EndSection
+EOF
 %end
 
 

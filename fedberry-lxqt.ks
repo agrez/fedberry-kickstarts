@@ -329,6 +329,10 @@ text/plain=featherpad.desktop
 [Added Associations]
 text/plain=featherpad.desktop;
 EOF
+
+# Enable compton by default for a smoother desktop experience.
+# This also stops LXQt start problems (when loggin in) when using VC4
+sed -i -e 's/Hidden/#Hidden/' /etc/xdg/autostart/lxqt-compton.desktop
 %end
 
 

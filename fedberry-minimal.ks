@@ -155,7 +155,8 @@ rm -f /boot/uI*
 ### Tweak boot options
 %post
 echo "Modifying cmdline.txt boot options"
-sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect/g' /boot/cmdline.txt
+sed -i 's/ rhgb plymouth.ignore-serial-consoles logo.nologo//' /boot/cmdline.txt
+%end
 
 
 ### Set colour depth to 16bit

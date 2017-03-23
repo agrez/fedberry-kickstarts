@@ -152,7 +152,8 @@ sed -i '/skip_if_unavailable=False/a exclude=kernel* perf python-perf bcm283x-fi
 ### Tweak boot options
 %post
 echo "Modifying cmdline.txt boot options"
-sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect selinux=0 audit=0/g' /boot/cmdline.txt
+sed -i 's/nortc/nortc selinux=0 audit=0/' /boot/cmdline.txt
+sed -i 's/ rhgb plymouth.ignore-serial-consoles logo.nologo//' /boot/cmdline.txt
 %end
 
 

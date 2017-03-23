@@ -109,6 +109,7 @@ bcm283x-firmware
 bcm43438-firmware
 bcmstat
 bluetooth-rpi3
+chromium
 fake-hwclock
 fedberry-config
 fedberry-local
@@ -125,15 +126,6 @@ raspberrypi-vc-utils
 wiringpi
 
 
-#newer firefox armv7hl builds are broken :-/
-#newer nss releases conflict with old firefox
--nss-3.28.1-1.3.fc25.armv7hl
--nss-sysinit-3.28.1-1.3.fc25.armv7hl
--nss-tools-3.28.1-1.3.fc25.armv7hl
-nss-3.27.0-1.1.fc25.armv7hl
-nss-sysinit-3.27.0-1.1.fc25.armv7hl
-nss-tools-3.27.0-1.1.fc25.armv7hl
-
 ### Remove misc packages
 -fedora-logos
 -fedora-release
@@ -146,6 +138,7 @@ nss-tools-3.27.0-1.1.fc25.armv7hl
 -gimp-help
 -realmd
 -xfce4-sensors-plugin
+-firefox
 %end
 
 

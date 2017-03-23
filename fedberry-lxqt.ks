@@ -104,7 +104,6 @@ notification-daemon
 openbox
 pcmanfm-qt
 perl-File-MimeInfo
-qupzilla
 upower
 xdg-user-dirs
 trojita
@@ -138,6 +137,7 @@ bcm283x-firmware
 bcm43438-firmware
 bcmstat
 bluetooth-rpi3
+chromium
 fake-hwclock
 fedberry-config
 fedberry-local

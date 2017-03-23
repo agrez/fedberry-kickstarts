@@ -170,6 +170,12 @@ sed -i s'/dtparam=audio=on/#dtparam=audio=on/' /boot/config.txt
 %end
 
 
+### Set colour depth to 16bit
+%post
+sed -i s'/#framebuffer_depth=16/framebuffer_depth=16/' /boot/config.txt
+%end
+
+
 ### Keep systemd's journal size under control
 %post
 echo "Setting systemd max journal size to 20M"

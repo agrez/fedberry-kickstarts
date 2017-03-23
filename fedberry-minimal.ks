@@ -156,6 +156,11 @@ rm -f /boot/uI*
 %post
 echo "Modifying cmdline.txt boot options"
 sed -i 's/nortc/nortc libahci.ignore_sss=1 raid=noautodetect/g' /boot/cmdline.txt
+
+
+### Set colour depth to 16bit
+%post
+sed -i s'/#framebuffer_depth=16/framebuffer_depth=16/' /boot/config.txt
 %end
 
 

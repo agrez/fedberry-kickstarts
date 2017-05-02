@@ -141,6 +141,8 @@ wiringpi
 -realmd
 -xfce4-sensors-plugin
 -firefox
+# pulse audio is too buggy on RPi's
+-alsa-plugins-pulseaudio
 %end
 
 
@@ -237,6 +239,14 @@ Section "Device"
     Option "SwapbuffersWait" "true"
 EndSection
 EOF
+%end
+
+
+### Use ALSA directly without being hooked by pulseaudio as pulseaudio is problematic on RPi's
+%post
+echo "Default to using ALSA directly without being hooked by pulseaudio"
+sed -i s'/#load-module module-alsa-sink/load-module module-alsa-sink device=dmix/' /etc/pulse/default.pa
+sed -i s'/#load-module module-alsa-source.*$/load-module module-alsa-source device=dsnoop/' /etc/pulse/default.pa
 %end
 
 

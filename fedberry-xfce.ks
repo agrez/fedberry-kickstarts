@@ -283,6 +283,15 @@ sed -i 's/use_compositing=true/use_compositing=false/' /usr/share/xfwm4/defaults
 %end
 
 
+### Edit some default options
+%post
+echo "Modifying xscreensaver defaults"
+sed -i -e 's|mode:\(.*\)random|mode:\1blank|' -e 's|lock:\(.*\)True|lock:\1False|' /etc/xscreensaver/XScreenSaver.ad.header
+/usr/sbin/update-xscreensaver-hacks
+%end
+
+
+
 ### Disable network service here. Doing it in services line fails due to RHBZ #1369794
 %post
 /sbin/chkconfig network off

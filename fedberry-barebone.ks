@@ -122,7 +122,6 @@ echo %_install_langs en_US.utf8 >> /etc/rpm/macros
 echo "deltarpm=0" >>/etc/dnf/dnf.conf
 %end
 
-
 ### Expire the current root password (forces new password on first login)
 %post
 passwd -e root
@@ -156,7 +155,6 @@ sed -i '/skip_if_unavailable=False/a exclude=bcm283x-firmware bluez kernel* ligh
 %post
 echo "Modifying cmdline.txt boot options"
 sed -i 's/nortc/nortc selinux=0 audit=0/' /boot/cmdline.txt
-sed -i 's/ rhgb plymouth.ignore-serial-consoles logo.nologo//' /boot/cmdline.txt
 %end
 
 

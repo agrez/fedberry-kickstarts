@@ -155,13 +155,6 @@ rm -f /boot/uI*
 %end
 
 
-### Tweak boot options
-%post
-echo "Modifying cmdline.txt boot options"
-sed -i 's/ rhgb plymouth.ignore-serial-consoles logo.nologo//' /boot/cmdline.txt
-%end
-
-
 ### Set colour depth to 16bit
 %post
 sed -i s'/#framebuffer_depth=16/framebuffer_depth=16/' /boot/config.txt

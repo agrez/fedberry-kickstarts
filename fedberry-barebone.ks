@@ -111,6 +111,9 @@ rm -f /var/lib/systemd/random-seed
 # Don't need this!
 dnf -y remove dracut-config-rescue
 
+echo -e "\nPackages installed in this image:"
+rpm -qa
+
 # Use only en_US language for rpms
 echo %_install_langs en_US.utf8 >> /etc/rpm/macros
 

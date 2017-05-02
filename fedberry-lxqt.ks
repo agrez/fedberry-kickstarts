@@ -332,7 +332,7 @@ sed -i s'/#load-module module-alsa-source.*$/load-module module-alsa-source devi
 %post
 echo "Modifying openbox defaults"
 # update openbox theme & number of desktops
-sed -i -e 's/Clearlooks/Bear2/' /etc/xdg/openbox/rc.xml
+sed -i -e 's/Clearlooks/Onyx/' /etc/xdg/openbox/rc.xml
 
 echo "Modifying xscreensaver defaults"
 sed -i -e 's|mode:\(.*\)random|mode:\1blank|' -e 's|lock:\(.*\)True|lock:\1False|' /etc/xscreensaver/XScreenSaver.ad.header

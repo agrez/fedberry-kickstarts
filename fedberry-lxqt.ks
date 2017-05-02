@@ -109,8 +109,8 @@ xdg-user-dirs
 trojita
 xarchiver
 xscreensaver-extras
-abiword
-gnumeric
+libreoffice-writer
+libreoffice-calc
 transmission-qt
 #kwin & sddm pull in too many plasma desktop deps
 #sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323). Workarounds don't seem to help.

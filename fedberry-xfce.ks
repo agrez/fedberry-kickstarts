@@ -60,7 +60,7 @@ part / --fstype="ext4" --size 3712 --grow --label=rootfs --asprimary
 @xfce-desktop
 @xfce-extra-plugins
 @xfce-media
-@xfce-office
+#@xfce-office #abiword is broken
 @admin-tools
 #arm-boot-config
 chrony
@@ -79,6 +79,8 @@ glibc-all-langpacks
 #vfat file system support tools
 dosfstools
 i2c-tools
+libreoffice-writer
+libreoffice-calc
 
 # workaround for consequence of RHBZ #1324623: without this, with
 # yum-based creation tools, compose fails due to conflict between

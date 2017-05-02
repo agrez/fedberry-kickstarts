@@ -74,6 +74,8 @@ dosfstools
 i2c-tools
 setroubleshoot
 system-config-printer
+system-config-language
+system-config-keyboard
 
 ### @lxqt pulls in too many plasma desktop deps
 breeze-cursor-theme

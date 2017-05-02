@@ -342,6 +342,29 @@ EOF
 # Enable compton by default for a smoother desktop experience.
 # This also stops LXQt start problems (when loggin in) when using VC4
 sed -i -e 's/Hidden/#Hidden/' /etc/xdg/autostart/lxqt-compton.desktop
+
+echo "Setting gtk2 theme defaults"
+mkdir /etc/gtk-2.0
+cat >/etc/gtk-2.0/gtkrc<<EOF
+gtk-theme-name="Breeze"
+gtk-icon-theme-name="breeze"
+gtk-font-name="Sans 10"
+gtk-cursor-theme-name="Breeze_Snow"
+gtk-button-images=0
+gtk-menu-images=0
+EOF
+
+echo "Setting gtk3 theme defaults"
+mkdir /etc/gtk-3.0
+cat >/etc/gtk-3.0/settings.ini<<EOF
+[Settings]
+gtk-theme-name=Breeze
+gtk-icon-theme-name=breeze
+gtk-font-name=Sans 10
+gtk-cursor-theme-name=Breeze_Snow
+gtk-button-images=0
+gtk-menu-images=0
+EOF
 %end
 
 

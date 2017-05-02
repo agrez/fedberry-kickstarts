@@ -147,6 +147,7 @@ fedberry-release-notes
 fedberry-repo
 fedberry-selinux-policy
 kernel
+plymouth-theme-charge
 python2-RPi.GPIO
 python3-RPi.GPIO
 raspberrypi-vc-libs
@@ -255,6 +256,12 @@ echo "tmpfs /tmp tmpfs    defaults,noatime,size=100m 0 0" >>/etc/fstab
 ### Need to ensure have our custom rpi2 kernel & firmware NOT the fedora kernel & firmware
 %post
 sed -i '/skip_if_unavailable=False/a exclude=kernel* perf python-perf bcm283x-firmware bluez' /etc/yum.repos.d/fedora*.repo
+
+
+### Tweak boot options
+%post
+echo "Enabling plymouth"
+sed -i 's/quiet/quiet rhgb plymouth.ignore-serial-consoles logo.nologo/' /boot/cmdline.txt
 %end
 
 

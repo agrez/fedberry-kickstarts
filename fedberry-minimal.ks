@@ -87,7 +87,7 @@ fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-selinux-policy
-kernel
+kernel-4.9.24-1.rpi.fc25.armv7hl
 python2-RPi.GPIO
 python3-RPi.GPIO
 raspberrypi-vc-libs

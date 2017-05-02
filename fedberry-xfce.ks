@@ -122,6 +122,7 @@ fedberry-release-notes
 fedberry-repo
 fedberry-selinux-policy
 kernel
+omxplayer
 python2-RPi.GPIO
 python3-RPi.GPIO
 raspberrypi-vc-libs

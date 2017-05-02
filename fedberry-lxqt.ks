@@ -147,6 +147,7 @@ fedberry-release-notes
 fedberry-repo
 fedberry-selinux-policy
 kernel
+omxplayer
 plymouth-theme-charge
 python2-RPi.GPIO
 python3-RPi.GPIO

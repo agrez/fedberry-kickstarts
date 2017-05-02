@@ -148,7 +148,7 @@ ln -s /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
 
 #### Need to ensure have our custom rpi2/3 kernels & firmware NOT the fedora kernel & firmware
 %post
-sed -i '/skip_if_unavailable=False/a exclude=kernel* perf python-perf bcm283x-firmware bluez' /etc/yum.repos.d/fedora*.repo
+sed -i '/skip_if_unavailable=False/a exclude=bcm283x-firmware bluez kernel* lightdm-gtk perf plymouth* python-perf' /etc/yum.repos.d/fedora*.repo
 %end
 
 

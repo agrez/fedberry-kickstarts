@@ -74,9 +74,7 @@ system-config-printer
 wget
 xscreensaver-extras
 rfkill
-# make sure all locales are available for inital-setup
 glibc-all-langpacks
-#vfat file system support tools
 dosfstools
 i2c-tools
 plymouth-theme-charge
@@ -165,6 +163,7 @@ wiringpi
 
 ### RPM & dnf related tweaking
 %post
+echo -e "/nPerforming RPM & dnf related tweaking"
 releasever=25
 basearch=armhfp
 
@@ -192,7 +191,7 @@ rpm -qa
 
 ### Explicitly set graphical.target as default as this is how initial-setup detects which version to run
 %post
-echo "Setting graphical.target as default"
+echo -e "\nSetting graphical.target as default"
 ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
 %end
 

@@ -82,6 +82,10 @@ i2c-tools
 plymouth-theme-charge
 libreoffice-writer
 libreoffice-calc
+#mp3 support
+mpg123
+gstreamer1-plugin-mpg123
+
 
 # workaround for consequence of RHBZ #1324623: without this, with
 # yum-based creation tools, compose fails due to conflict between

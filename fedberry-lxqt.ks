@@ -98,12 +98,14 @@ lxqt-sudo
 lxqt-wallet
 lximage-qt
 lxtask
+lxappearance
 network-manager-applet
 nm-connection-editor
 notification-daemon
 openbox
 pcmanfm-qt
 perl-File-MimeInfo
+qt5-qtstyleplugins
 upower
 xdg-user-dirs
 trojita

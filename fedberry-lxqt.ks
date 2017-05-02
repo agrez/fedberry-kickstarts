@@ -372,6 +372,10 @@ gtk-cursor-theme-name=Breeze_Snow
 gtk-button-images=0
 gtk-menu-images=0
 EOF
+
+#lxqt menu is missing an icon when use breeze icon theme
+ln -s /usr/share/icons/breeze/categories/32/applications-utilities.svg /usr/share/icons/breeze/categories/32/applications-accessories.svg
+gtk-update-icon-cache /usr/share/icons/breeze
 %end
 
 

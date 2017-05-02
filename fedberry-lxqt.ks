@@ -59,6 +59,9 @@ pulseaudio
 chrony
 initial-setup
 initial-setup-gui
+#kwin & sddm pull in too many plasma desktop deps
+#sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323). Workarounds don't seem to help.
+#sddm also doesn't (yet?) support XDMCP.
 lightdm
 lightdm-gtk
 gamin
@@ -90,7 +93,7 @@ lxqt-config-randr
 lxqt-globalkeys
 lxqt-notificationd
 lxqt-openssh-askpass
-lxqt-panel
+# lxqt-panel # from Fedberry packages
 lxqt-policykit
 lxqt-powermanagement
 lxqt-qtplugin
@@ -116,9 +119,6 @@ xscreensaver-extras
 libreoffice-writer
 libreoffice-calc
 transmission-qt
-#kwin & sddm pull in too many plasma desktop deps
-#sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323). Workarounds don't seem to help.
-#sddm also doesn't (yet?) support XDMCP.
 blueman
 sayonara
 mpg123
@@ -170,6 +170,7 @@ compton-conf
 featherpad
 lxqt-common
 lxqt-theme-fedberry
+lxqt-panel
 obconf-qt
 qlipper
 qpdfview
@@ -223,6 +224,7 @@ libcrypt-nss
 
 ### RPM & dnf related tweaking
 %post
+echo -e "\nPerforming RPM & dnf related tweaking"
 releasever=25
 basearch=armhfp
 
@@ -251,7 +253,7 @@ rpm -qa
 
 ### Explicitly set graphical.target as default as this is how initial-setup detects which version to run
 %post
-echo "Setting graphical.target as default"
+echo -e "\nSetting graphical.target as default"
 ln -sf /lib/systemd/system/graphical.target /etc/systemd/system/default.target
 %end
 

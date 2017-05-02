@@ -118,6 +118,7 @@ transmission-qt
 #sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323). Workarounds don't seem to help.
 #sddm also doesn't (yet?) support XDMCP.
 blueman
+sayonara
 mpg123
 gstreamer1-plugin-mpg123
 

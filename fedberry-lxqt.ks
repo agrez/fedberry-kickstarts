@@ -55,6 +55,7 @@ part / --fstype="ext4" --size 3904 --grow --label=rootfs --asprimary
 @standard
 @printing
 @networkmanager-submodules
+alsa-utils
 pulseaudio
 chrony
 initial-setup

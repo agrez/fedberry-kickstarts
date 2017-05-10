@@ -84,6 +84,7 @@ libreoffice-calc
 #mp3 support
 mpg123
 gstreamer1-plugin-mpg123
+gvfs-smb
 
 
 # workaround for consequence of RHBZ #1324623: without this, with

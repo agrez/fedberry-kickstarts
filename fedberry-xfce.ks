@@ -60,6 +60,7 @@ part / --fstype="ext4" --size 4448 --grow --label=rootfs --asprimary
 @xfce-desktop
 @xfce-extra-plugins
 @xfce-media
+xfce4-mixer
 #@xfce-office #abiword is broken
 @admin-tools
 #arm-boot-config
@@ -154,6 +155,7 @@ wiringpi
 -firefox
 # pulse audio is too buggy on RPi's
 -alsa-plugins-pulseaudio
+-pavucontrol
 %end
 
 

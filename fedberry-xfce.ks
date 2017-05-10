@@ -218,6 +218,13 @@ sed -i 's/quiet/quiet rhgb plymouth.ignore-serial-consoles logo.nologo/' /boot/c
 %end
 
 
+### Tweak systemd options
+%post
+echo "Setting systemd DefaultTimeoutStopSec to 30secs"
+sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=30s/' /etc/systemd/system.conf
+%end
+
+
 ### Enable usb boot support for RPi3
 %post --nochroot
 echo "Use PARTUUID in /boot/cmdline.txt"

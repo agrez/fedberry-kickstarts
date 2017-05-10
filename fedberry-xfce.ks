@@ -152,6 +152,8 @@ wiringpi
 -gimp-help
 -realmd
 -xfce4-sensors-plugin
+-xfburn
+-asunder
 -firefox
 # pulse audio is too buggy on RPi's
 -alsa-plugins-pulseaudio

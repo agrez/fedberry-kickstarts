@@ -125,10 +125,10 @@ fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-selinux-policy
-kernel-4.9.26-1.rpi.fc25.armv7hl
-kernel-core-4.9.26-1.rpi.fc25.armv7hl
-kernel-modules-4.9.26-1.rpi.fc25.armv7hl
-kernel-modules-extra-4.9.26-1.rpi.fc25.armv7hl
+kernel-4.9.27-1.rpi.fc25.armv7hl
+kernel-core-4.9.27-1.rpi.fc25.armv7hl
+kernel-modules-4.9.27-1.rpi.fc25.armv7hl
+kernel-modules-extra-4.9.27-1.rpi.fc25.armv7hl
 omxplayer
 python2-RPi.GPIO
 python3-RPi.GPIO

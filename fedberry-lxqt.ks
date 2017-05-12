@@ -424,4 +424,6 @@ echo "Zeroing out empty space."
 # This forces the filesystem to reclaim space from deleted files
 dd bs=1M if=/dev/zero of=/var/tmp/zeros || :
 rm -f /var/tmp/zeros
+
+echo "Available space on rootfs: $(df -h |awk '/loop0p2/ { print $4 }')"
 %end

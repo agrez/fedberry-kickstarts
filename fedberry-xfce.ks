@@ -125,10 +125,10 @@ fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-selinux-policy
-kernel-4.9.27-1.rpi.fc25.armv7hl
-kernel-core-4.9.27-1.rpi.fc25.armv7hl
-kernel-modules-4.9.27-1.rpi.fc25.armv7hl
-kernel-modules-extra-4.9.27-1.rpi.fc25.armv7hl
+kernel-4.9.30-1.rpi.fc25.armv7hl
+kernel-core-4.9.30-1.rpi.fc25.armv7hl
+kernel-modules-4.9.30-1.rpi.fc25.armv7hl
+kernel-modules-extra-4.9.30-1.rpi.fc25.armv7hl
 omxplayer
 python2-RPi.GPIO
 python3-RPi.GPIO
@@ -138,10 +138,10 @@ wiringpi
 
 
 ### Remove misc packages
--kernel-4.10.14-200.fc25.armv7hl
--kernel-core-4.10.14-200.fc25.armv7hl
--kernel-modules-4.10.14-200.fc25.armv7hl
--kernel-modules-extra-4.10.14-200.fc25.armv7hl
+-kernel-4.10.17-200.fc25.armv7hl
+-kernel-core-4.10.17-200.fc25.armv7hl
+-kernel-modules-4.10.17-200.fc25.armv7hl
+-kernel-modules-extra-4.10.17-200.fc25.armv7hl
 -fedora-logos
 -fedora-release
 -fedora-release-notes

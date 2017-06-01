@@ -72,7 +72,7 @@ fedberry-local
 fedberry-release
 fedberry-release-notes
 fedberry-repo
-kernel-4.9.27-1.rpi.fc25.armv7hl
+kernel-4.9.30-1.rpi.fc25.armv7hl
 python2-RPi.GPIO
 python3-RPi.GPIO
 raspberrypi-vc-libs

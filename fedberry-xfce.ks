@@ -138,10 +138,10 @@ wiringpi
 
 
 ### Remove misc packages
--kernel-4.10.17-200.fc25.armv7hl
--kernel-core-4.10.17-200.fc25.armv7hl
--kernel-modules-4.10.17-200.fc25.armv7hl
--kernel-modules-extra-4.10.17-200.fc25.armv7hl
+-kernel-4.11.3-200.fc25.armv7hl
+-kernel-core-4.11.3-200.fc25.armv7hl
+-kernel-modules-4.11.3-200.fc25.armv7hl
+-kernel-modules-extra-4.11.3-200.fc25.armv7hl
 -fedora-logos
 -fedora-release
 -fedora-release-notes

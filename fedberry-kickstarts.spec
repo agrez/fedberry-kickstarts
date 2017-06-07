@@ -1,6 +1,6 @@
 %define bname   fedberry
 %define name    %{bname}-kickstarts
-%define version 23
+%define version 25
 %define release 1
 
 Name:       %{name}
@@ -22,7 +22,7 @@ Various kickstarts used to create FedBerry Remixes
 
 %prep
 %setup -c -T
-cp -a %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} .
+cp -a %{sources} .
 
 %build
 
@@ -41,5 +41,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Jun 01 2017 Vaughan <vaughan at agrez dot net> 25-1
+- Update for FedBerry 25
+
 * Fri Feb 05 2016 Vaughan <vaughan at agrez dot net> 23-1
 - Initial release

@@ -1,5 +1,5 @@
 ###
-# RELEASE=1-rc1
+# RELEASE=1
 ###
 
 

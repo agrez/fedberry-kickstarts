@@ -11,7 +11,7 @@ Summary:    Kickstart files for creating FedBerry Remixes
 Group:      Applications/System
 URL:        https://github.com/fedberry/fedberry-kickstarts
 Source0:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-repos.ks
-Source1:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-mini.ks
+Source1:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-barebone.ks
 Source2:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-minimal.ks
 Source3:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-xfce.ks
 Source4:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-lxqt.ks

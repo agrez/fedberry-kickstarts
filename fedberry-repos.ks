@@ -5,7 +5,7 @@ repo --name="fedora" --mirrorlist=http://mirrors.fedoraproject.org/metalink?repo
 repo --name="updates" --mirrorlist=http://mirrors.fedoraproject.org/metalink?repo=updates-released-f$releasever&arch=$basearch
 
 # FedBerry stable
-repo --name="fedberry" --mirrorlist=https://fedberry.github.io/mirrorlist_stable
+repo --name="fedberry" --mirrorlist=https://fedberry.github.io/mirrorlist_stable_$releasever
 
 # Edit this with your own repository
 #repo --name="Local Repo" --baseurl=file:///path/to/folder/ --cost=600

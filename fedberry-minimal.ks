@@ -128,9 +128,6 @@ echo "Disabling tmpfs for /tmp."
 systemctl mask tmp.mount
 
 dnf -y remove dracut-config-generic
-
-echo -e "\nPackages installed in this image:"
-rpm -qa
 %end
 
 

@@ -159,6 +159,7 @@ wiringpi
 # pulse audio is too buggy on RPi's
 -alsa-plugins-pulseaudio
 -pavucontrol
+-kernel-headers
 %end
 
 
@@ -188,9 +189,6 @@ rm -f /var/lib/systemd/random-seed
 ### Remove various packages that refuse to not install themselves in the %packages sections :-/
 %post
 dnf -y remove dracut-config-rescue
-dnf -y remove kernel-headers
-echo -e "\nPackages installed in this image:"
-rpm -qa
 %end
 
 

@@ -178,14 +178,6 @@ qpdfview
 qterminal
 yumex-dnf
 
-# workaround for consequence of RHBZ #1324623: without this, with
-# yum-based creation tools, compose fails due to conflict between
-# libcrypt and libcrypt-nss. dnf does not seem to have the same
-# issue, so this may be dropped when appliance-creator is ported
-# to dnf.
-libcrypt-nss
--libcrypt
-
 
 ### Packages to Remove
 -fedora-release
@@ -195,6 +187,7 @@ libcrypt-nss
 -pcmciautils
 # pulse audio is too buggy on RPi's
 -alsa-plugins-pulseaudio
+-kernel-headers
 
 ### Unwanted fonts
 -lohit-*
@@ -245,10 +238,6 @@ rm -f /var/lib/systemd/random-seed
 ### Remove various packages that refuse to not install themselves in the %packages sections :-/
 %post
 dnf -y remove dracut-config-rescue
-dnf -y remove kernel-headers
-
-echo -e "\nPackages installed in this image:"
-rpm -qa
 %end
 
 

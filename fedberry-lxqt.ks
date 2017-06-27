@@ -156,7 +156,7 @@ fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-selinux-policy
-kernel-4.9.30-2.rpi.fc25.armv7hl
+kernel-4.9.34-1.rpi.fc25.armv7hl
 omxplayer
 plymouth-theme-charge
 python2-RPi.GPIO

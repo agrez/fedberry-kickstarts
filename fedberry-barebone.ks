@@ -1,5 +1,5 @@
 ###
-# RELEASE=1
+# RELEASE=beta1
 ###
 
 
@@ -30,14 +30,11 @@ rootpw fedberry
 selinux --disabled
 
 # System services
-services --disabled="network" --enabled="fake-hwclock"
+services --disabled="network,sssd" --enabled="saveclock"
 
 
-#
 # Define how large you want your rootfs to be
-#
 # NOTE: /boot and swap MUST use --asprimary to ensure '/' is the last partition in order for rootfs-resize to work.
-
 # Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label="BOOT" --asprimary
 part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
@@ -50,39 +47,28 @@ part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 # Packages
 ###
 
+### Fedberry packages
+%include fedberry-pkgs.ks
+
+### Fedora packages
 %packages --instLangs=en_US.utf8 --excludedocs
 @core
-NetworkManager-wifi
-glibc-langpack-en
-#vfat file system support tools
-dosfstools
-i2c-tools
-
 # DNF has 'issues' with time travel!
 chrony
+#vfat file system support tools
+dosfstools
+glibc-langpack-en
+i2c-tools
+NetworkManager-wifi
 
-# FedBerry specific packages
-bcm283x-firmware
-bcm43438-firmware
-bcmstat
-bluetooth-rpi3
-fake-hwclock
-fedberry-config
-fedberry-local
-fedberry-release
-fedberry-release-notes
-fedberry-repo
-kernel-4.9.34-1.rpi.fc25.armv7hl
-python2-RPi.GPIO
-python3-RPi.GPIO
-raspberrypi-vc-libs
-raspberrypi-vc-utils
-wiringpi
-
-# Packages to Remove
+### Remove packages
+-fedberry-headless
+-fedberry-selinux-policy
+-linux-firmware
+-omxplayer
 -selinux-policy
 -selinux-policy-targeted
--plymouth*
+-trousers
 %end
 
 
@@ -93,7 +79,7 @@ wiringpi
 
 ### RPM & dnf related tweaking
 %post
-releasever=25
+releasever=27
 basearch=armhfp
 
 # Work around for poor key import UI in PackageKit
@@ -141,6 +127,18 @@ ln -s /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
 %end
 
 
+### Tweak systemd options
+%post
+echo "Setting systemd DefaultTimeoutStopSec to 30secs"
+sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=30s/' /etc/systemd/system.conf
+
+#systemd-hwdb-update service won't disable for some reason :-/
+#rebuilding /etc/udev/hwdb.bin @ every boot takes time!
+echo "Masking systemd systemd-hwdb-update.service"
+/usr/bin/systemctl mask systemd-hwdb-update.service
+%end
+
+
 #### Need to ensure have our custom rpi2/3 kernels & firmware NOT the fedora kernel & firmware
 %post
 sed -i '/skip_if_unavailable=False/a exclude=bcm283x-firmware bluez kernel* lightdm-gtk perf plymouth* python-perf' /etc/yum.repos.d/fedora*.repo
@@ -157,7 +155,7 @@ sed -i 's/nortc/nortc selinux=0 audit=0/' /boot/cmdline.txt
 ### Enable usb boot support for RPi3
 %post --nochroot
 echo "Use PARTUUID in /boot/cmdline.txt"
-PARTUUID=$(/usr/sbin/blkid -s PARTUUID |awk '/loop0p2/ { print $2 }' |sed 's/"//g')
+PARTUUID=$(/usr/sbin/blkid -s PARTUUID |awk '/\/dev\/loop0p2/ { print $2 }' |sed 's/"//g')
 sed -i "s|/dev/mmcblk0p2|$PARTUUID|" $INSTALL_ROOT/boot/cmdline.txt
 %end
 
@@ -178,13 +176,6 @@ sed -i s'/#framebuffer_depth=16/framebuffer_depth=16/' /boot/config.txt
 %post
 echo "Setting systemd max journal size to 20M"
 sed -i 's/#SystemMaxUse=/SystemMaxUse=20/' /etc/systemd/journald.conf
-%end
-
-
-### Need some more agressive space saving cleanups for 'barebone' builds
-%post
-echo "Removing firewalld service"
-dnf -C -y autoremove firewalld
 %end
 
 
@@ -212,6 +203,9 @@ touch /etc/machine-id
 
 ### Some space saving cleanups
 %post
+echo "Removing firewalld service"
+dnf -C -y autoremove firewalld
+
 echo "cleaning yumdb"
 rm -rf /var/lib/yum/yumdb/*
 

@@ -57,6 +57,7 @@ compton-conf
 lxqt-common
 lxqt-theme-fedberry
 lxqt-panel
+plymouth-theme-charge
 qlipper
 qpdfview
 %end

@@ -158,16 +158,6 @@ xorg-x11-drv-fbdev
 mesa-dri-drivers
 glx-utils
 
-### FedBerry lxqt specific packages
-compton
-compton-conf
-lxqt-common
-lxqt-theme-fedberry
-lxqt-panel
-omxplayer
-qlipper
-qpdfview
-
 
 ### Packages to Remove
 -fedberry-headless

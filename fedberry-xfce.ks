@@ -110,7 +110,6 @@ glx-utils
 -aspell-*
 -desktop-backgrounds-basic
 -gimp-help
--realmd
 -xfce4-sensors-plugin
 -xfburn
 -asunder

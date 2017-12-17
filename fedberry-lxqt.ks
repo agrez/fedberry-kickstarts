@@ -70,7 +70,6 @@ qpdfview
 @printing
 @networkmanager-submodules
 alsa-utils
-alsa-plugins-pulseaudio
 blueman
 chrony
 claws-mail

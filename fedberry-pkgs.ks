@@ -30,6 +30,8 @@ wiringpi
 linux-firmware
 
 ### Packages to Remove
+#pulse audio is still buggy with RPi's
+-alsa-plugins-pulseaudio
 -iwl*
 -ipw*
 -trousers

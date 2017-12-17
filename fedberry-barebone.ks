@@ -1,5 +1,5 @@
 ###
-# RELEASE=beta1
+# RELEASE=1-beta1
 ###
 
 

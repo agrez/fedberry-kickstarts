@@ -174,15 +174,6 @@ sed -i 's/#SystemMaxUse=/SystemMaxUse=20/' /etc/systemd/journald.conf
 %end
 
 
-# Ugggh.... this is a hacky workaround! Since linux-firmware now contains brcmfmac43430-sdio.bin,
-# we can't include it in bcm43438-firmware (it conflicts). Just install manually for now :-/
-%post --nochroot
-echo "Installing brcmfmac43430 firmware"
-curl -o $INSTALL_ROOT/usr/lib/firmware/brcm/brcmfmac43430-sdio.bin http://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/plain/brcm/brcmfmac43430-sdio.bin
-chmod 644 $INSTALL_ROOT/usr/lib/firmware/brcm/brcmfmac43430-sdio.bin
-%end
-
-
 ### Remove machine-id on pre generated images
 %post
 rm -f /etc/machine-id

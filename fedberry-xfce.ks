@@ -1,9 +1,4 @@
 ###
-# RELEASE=1-beta1
-###
-
-
-###
 # Repositories
 ###
 

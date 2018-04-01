@@ -1,5 +1,5 @@
 ###
-# RELEASE=1-beta1
+# Repositories
 ###
 
 %include fedberry-repos.ks

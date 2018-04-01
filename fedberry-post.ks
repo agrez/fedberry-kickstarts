@@ -77,16 +77,8 @@ echo "/swapfile swap swap defaults 0 0" >>/etc/fstab
 
 ### Tweak systemd options
 %post
-echo "Setting systemd DefaultTimeoutStopSec to 30secs"
-sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=30s/' /etc/systemd/system.conf
-%end
-
-
-### Use ALSA directly without being hooked by pulseaudio as pulseaudio is still buggy with RPi's
-%post
-echo "Default to using ALSA directly without being hooked by pulseaudio"
-sed -i s'/#load-module module-alsa-sink/load-module module-alsa-sink device=dmix/' /etc/pulse/default.pa
-sed -i s'/#load-module module-alsa-source.*$/load-module module-alsa-source device=dsnoop/' /etc/pulse/default.pa
+echo "Setting systemd DefaultTimeoutStopSec to 20secs"
+sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=20s/' /etc/systemd/system.conf
 %end
 
 

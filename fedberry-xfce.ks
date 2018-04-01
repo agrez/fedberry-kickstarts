@@ -158,6 +158,12 @@ sed -i 's/use_compositing=true/use_compositing=false/' /usr/share/xfwm4/defaults
 echo "Modifying xscreensaver defaults"
 sed -i -e 's|mode:\(.*\)random|mode:\1blank|' -e 's|lock:\(.*\)True|lock:\1False|' /etc/xscreensaver/XScreenSaver.ad.header
 /usr/sbin/update-xscreensaver-hacks
+
+
+#Some .desktop files are missing icons when using breeze icon theme
+ln -s /usr/share/icons/breeze/categories/32/applications-utilities.svg /usr/share/icons/breeze/categories/32/applications-accessories.svg
+ln -s /usr/share/icons/breeze/apps/48/internet-web-browser.svg /usr/share/icons/breeze/apps/48/web-browser.svg
+gtk-update-icon-cache /usr/share/icons/breeze
 %end
 
 

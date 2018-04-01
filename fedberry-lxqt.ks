@@ -210,19 +210,6 @@ sed -i -e s'/gpu_mem=32/gpu_mem=128/' /boot/config.txt
 %end
 
 
-### Default to using fbturbo xorg driver (vc4 is still too buggy)
-%post
-cat > /etc/X11/xorg.conf.d/20-fbturbo.conf <<EOF
-Section "Device"
-    Identifier "Raspberry Pi FBDEV"
-    Driver "fbturbo"
-    Option "fbdev" "/dev/fb0"
-    Option "SwapbuffersWait" "true"
-EndSection
-EOF
-%end
-
-
 ### Edit some default options
 %post
 echo "Modifying openbox defaults"
@@ -244,29 +231,6 @@ EOF
 # Enable compton by default for a smoother desktop experience.
 # This also stops LXQt start problems (when loggin in) when using VC4
 sed -i -e 's/Hidden/#Hidden/' /etc/xdg/autostart/lxqt-compton.desktop
-
-echo "Setting gtk2 theme defaults"
-mkdir /etc/gtk-2.0
-cat >/etc/gtk-2.0/gtkrc<<EOF
-gtk-theme-name="Breeze"
-gtk-icon-theme-name="breeze"
-gtk-font-name="Sans 10"
-gtk-cursor-theme-name="Breeze_Snow"
-gtk-button-images=0
-gtk-menu-images=0
-EOF
-
-echo "Setting gtk3 theme defaults"
-mkdir /etc/gtk-3.0
-cat >/etc/gtk-3.0/settings.ini<<EOF
-[Settings]
-gtk-theme-name=Breeze
-gtk-icon-theme-name=breeze
-gtk-font-name=Sans 10
-gtk-cursor-theme-name=Breeze_Snow
-gtk-button-images=0
-gtk-menu-images=0
-EOF
 
 #lxqt menu is missing an icon when use breeze icon theme
 ln -s /usr/share/icons/breeze/categories/32/applications-utilities.svg /usr/share/icons/breeze/categories/32/applications-accessories.svg

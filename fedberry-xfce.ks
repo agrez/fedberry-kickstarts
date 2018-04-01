@@ -136,19 +136,6 @@ sed -i s'/gpu_mem=32/gpu_mem=128/' /boot/config.txt
 %end
 
 
-### Default to using fbturbo xorg driver (vc4 is still too buggy)
-%post
-cat > /etc/X11/xorg.conf.d/20-fbturbo.conf <<EOF
-Section "Device"
-    Identifier "Raspberry Pi FBDEV"
-    Driver "fbturbo"
-    Option "fbdev" "/dev/fb0"
-    Option "SwapbuffersWait" "true"
-EndSection
-EOF
-%end
-
-
 ### Tweak xfwm4 options
 %post
 echo "Modifying default xfwm4 options"

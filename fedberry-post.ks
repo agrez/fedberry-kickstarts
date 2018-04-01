@@ -32,12 +32,6 @@ echo "tmpfs /tmp tmpfs    defaults,noatime,size=100m 0 0" >>/etc/fstab
 %end
 
 
-### Need to ensure have our custom rpi2/3 kernel & firmware
-%post
-sed -i '/skip_if_unavailable=False/a exclude=bcm283x-firmware bluez kernel* lightdm-gtk perf plymouth* python-perf' /etc/yum.repos.d/fedora*.repo
-%end
-
-
 ### Remove uboot images after kernel installation
 %post
 echo "Cleaning up uboot images"

@@ -48,22 +48,16 @@ part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 ### Fedora packages
 %packages --instLangs=en_US.utf8 --excludedocs
 @core
-# DNF has 'issues' with time travel!
-chrony
-#vfat file system support tools
-dosfstools
 glibc-langpack-en
-i2c-tools
-NetworkManager-wifi
 
 ### Remove packages
 -fedberry-headless
 -fedberry-selinux-policy
+-initial-setup
 -linux-firmware
 -omxplayer
 -selinux-policy
 -selinux-policy-targeted
--trousers
 %end
 
 

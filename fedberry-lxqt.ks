@@ -42,13 +42,15 @@ part / --fstype="ext4" --size 4096 --grow --label=rootfs --asprimary
 # Packages
 ###
 
-### Fedberry packages
+### Fedberry base packages
 %include fedberry-pkgs.ks
-%packages
 
+%packages
 ### FedBerry lxqt specific packages
 compton
 compton-conf
+fedberry-local-gtk-config
+fedberry-local-xorg-config
 lxqt-common
 lxqt-theme-fedberry
 lxqt-panel
@@ -66,30 +68,25 @@ qpdfview
 @networkmanager-submodules
 alsa-utils
 blueman
-chrony
+chromium
 claws-mail
-#vfat file system support tools
-dosfstools
-firefox
 gamin
-# make sure all locales are available for inital-setup
-glibc-all-langpacks
+glibc-all-langpacks ## make sure all locales are available for inital-setup
 gstreamer1-plugin-mpg123
 gvfs
 gvfs-smb
-i2c-tools
-initial-setup
 initial-setup-gui
 libreoffice-writer
 libreoffice-calc
-#kwin & sddm pull in too many plasma desktop deps
-#sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323). Workarounds don't seem to help.
-#sddm also doesn't (yet?) support XDMCP.
+## kwin & sddm pull in too many plasma desktop deps
+## sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323).
+## Workarounds don't seem to help. sddm also doesn't (yet?) support XDMCP.
 lightdm
 lightdm-gtk
 lxmenu-data
-mpg123
+mpg123 ## mp3 support
 pulseaudio
+pavucontrol-qt
 rng-tools
 sayonara
 setroubleshoot
@@ -97,28 +94,24 @@ system-config-printer
 system-config-language
 system-config-keyboard
 transmission-qt
-#trojita (not built for f26/27 armv7hl?) sylpheed or claws-mail?
+#trojita ## not built for f26/27 armv7hl?
 wget
 xarchiver
 xscreensaver-extras
 
-
 ### @lxqt pulls in too many plasma desktop deps
-breeze-cursor-theme
-breeze-gtk
-breeze-icon-theme
 dnfdragora
 featherpad
 firewall-config
 lxqt-admin
 lxqt-about
-#lxqt-common # from Fedberry packages
+#lxqt-common ## from Fedberry packages
 lxqt-config
 lxqt-config-randr
 lxqt-globalkeys
 lxqt-notificationd
 lxqt-openssh-askpass
-# lxqt-panel # from Fedberry packages
+#lxqt-panel ## from Fedberry packages
 lxqt-policykit
 lxqt-powermanagement
 lxqt-qtplugin
@@ -140,7 +133,6 @@ qterminal
 upower
 xdg-user-dirs
 
-
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev
 xorg-x11-drv-fbturbo
@@ -161,28 +153,6 @@ glx-utils
 -fprintd-pam
 -ibus-typing-booster
 -pcmciautils
--kernel-headers
-
-### Unwanted fonts
--lohit-*
--sil-*
--adobe-source-han-sans-cn-fonts
--adobe-source-han-sans-tw-fonts
--google-noto-sans-tai-viet-fonts
--google-noto-sans-mandaic-fonts
--google-noto-sans-lisu-fonts
--google-noto-sans-tagalog-fonts
--google-noto-sans-tai-tham-fonts
--google-noto-sans-meetei-mayek-fonts
--lklug-fonts
--vlgothic-fonts
--khmeros-base-fonts
--paktype-naskh-basic-fonts
--tabish-eeyek-fonts
--smc-meera-fonts
--thai-scalable-waree-fonts
--jomolhari-fonts
--naver-nanum-gothic-fonts
 %end
 
 

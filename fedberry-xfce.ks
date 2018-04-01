@@ -40,10 +40,18 @@ part / --fstype="ext4" --size 4480 --grow --label=rootfs --asprimary
 # Packages
 ###
 
-### Fedberry packages
+### Fedberry base packages
 %include fedberry-pkgs.ks
 
 %packages
+### FedBerry xfce remix specific packages
+fedberry-local-xfce-config
+fedberry-local-gtk-config
+fedberry-local-xorg-config
+%end
+
+%packages
+@admin-tools
 @core
 @fonts
 @hardware-support
@@ -56,30 +64,24 @@ part / --fstype="ext4" --size 4480 --grow --label=rootfs --asprimary
 @xfce-desktop
 @xfce-extra-plugins
 @xfce-media
-xfce4-mixer
-#@xfce-office #abiword is broken
-@admin-tools
-#arm-boot-config
-chrony
+# @xfce-office ## abiword is broken
+
+chromium
 dracut-config-generic
-firefox
-gnome-keyring-pam
-initial-setup
-initial-setup-gui
-system-config-printer
-wget
-xscreensaver-extras
-rfkill
 glibc-all-langpacks
-dosfstools
-i2c-tools
-plymouth-theme-charge
-libreoffice-writer
-libreoffice-calc
-#mp3 support
-mpg123
+gnome-keyring-pam
 gstreamer1-plugin-mpg123
 gvfs-smb
+initial-setup-gui
+libreoffice-calc
+libreoffice-writer
+mpg123 ## mp3 support
+plymouth-theme-charge
+system-config-printer
+rfkill
+wget
+xfce4-mixer
+xscreensaver-extras
 
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev
@@ -95,20 +97,27 @@ glx-utils
 
 
 ### Remove misc packages
+-acpid
+-aspell-*
+-asunder
+-autofs
+-desktop-backgrounds-basic
+-dnfdragora-gui ## dnfdragora-gui(updater) are just too buggy at present
+-dnfdragora-updater
 -fedberry-headless
 -fedora-logos
 -fedora-release
 -fedora-release-notes
--PackageKit*
--autofs
--acpid
--aspell-*
--desktop-backgrounds-basic
+-firefox
 -gimp-help
+-kernel-modules-extra
+-kernel-lpae-modules-extra
+-jack-audio-connection-kit
+-mpg123-plugins-jack
+-PackageKit*
+-rygel
 -xfce4-sensors-plugin
 -xfburn
--asunder
--kernel-headers
 %end
 
 

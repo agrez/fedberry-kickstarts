@@ -4,12 +4,13 @@
 
 %packages
 
-# Core FedBerry packages
+# Core packages
 bcm283x-firmware
-bcm43438-firmware
+bcm434xx-firmware
 bcmstat
 bluetooth-rpi3
-saveclock
+chrony ## DNF has 'issues' with time travel!
+dosfstools ## vfat file system support tools
 fedberry-config
 fedberry-headless
 fedberry-local
@@ -17,12 +18,17 @@ fedberry-release
 fedberry-release-notes
 fedberry-repo
 fedberry-selinux-policy
-kernel
+i2c-tools
+initial-setup
+kernel-4.14.29-1.rpi.fc27.armv7hl
+nano
+NetworkManager-wifi
 omxplayer
 python2-RPi.GPIO
 python3-RPi.GPIO
 raspberrypi-vc-libs
 raspberrypi-vc-utils
+saveclock
 wiringpi
 
 #Our kernel now has no dependency on linux-firmware as all essential firmware
@@ -30,11 +36,32 @@ wiringpi
 linux-firmware
 
 ### Packages to Remove
-#pulse audio is still buggy with RPi's
--alsa-plugins-pulseaudio
+-alsa-plugins-pulseaudio ## alsa over pulseaudio is still buggy
 -iwl*
 -ipw*
--trousers
--usb_modeswitch
 -iproute-tc
+-kernel-headers
+-libcangjie
+-usb_modeswitch
+
+### Thin out fonts
+-lohit-*
+-sil-*
+-adobe-source-han-sans-cn-fonts
+-adobe-source-han-sans-tw-fonts
+-google-noto-sans-tai-viet-fonts
+-google-noto-sans-mandaic-fonts
+-google-noto-sans-lisu-fonts
+-google-noto-sans-tagalog-fonts
+-google-noto-sans-tai-tham-fonts
+-google-noto-sans-meetei-mayek-fonts
+-lklug-fonts
+-vlgothic-fonts
+-khmeros-base-fonts
+-paktype-naskh-basic-fonts
+-tabish-eeyek-fonts
+-smc-meera-fonts
+-thai-scalable-waree-fonts
+-jomolhari-fonts
+-naver-nanum-gothic-fonts
 %end

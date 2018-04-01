@@ -48,22 +48,14 @@ part / --fstype="ext4" --size 1568 --grow --fsoptions="noatime" --label=rootfs -
 %packages
 @core
 @hardware-support
-chrony
-#vfat file system support tools
-dosfstools
 dracut-config-generic
 bash-completion
 GeoIP
 glibc-langpack-en
 hardlink
-i2c-tools
-initial-setup
-nano
-NetworkManager-wifi
 plymouth-theme-charge
 policycoreutils
 timedatex
-trousers
 
 ### Remove packages
 -@dial-up

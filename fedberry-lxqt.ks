@@ -32,7 +32,7 @@ services --disabled="network,lvm2-monitor,dmraid-activation,ModemManager" --enab
 # NOTE: /boot and swap MUST use --asprimary to ensure '/' is the last partition in order for rootfs-resize to work.
 # Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label=BOOT --asprimary
-part / --fstype="ext4" --size 4096 --grow --label=rootfs --asprimary
+part / --fstype="ext4" --size 4128 --grow --label=rootfs --asprimary
 # Note: the --fsoptions & --fsprofile switches dont seem to work at all!
 #  <SIGH> Need to edit fstab in %post :-(
 
@@ -86,6 +86,7 @@ lightdm-gtk
 lxmenu-data
 mpg123 ## mp3 support
 pulseaudio
+pulseaudio-module-x11
 pavucontrol-qt
 rng-tools
 sayonara

@@ -39,7 +39,7 @@ rm -f /boot/uI*
 %end
 
 
-### Enable usb boot support for RPi3
+### Enable usb boot support for RPi3(plus)
 %post --nochroot
 echo "Use PARTUUID in /boot/cmdline.txt"
 PARTUUID=$(/usr/sbin/blkid -s PARTUUID |awk '/\/dev\/loop0p2/ { print $2 }' |sed 's/"//g')

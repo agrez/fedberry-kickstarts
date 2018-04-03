@@ -42,6 +42,7 @@ linux-firmware
 -iproute-tc
 -kernel-headers
 -libcangjie
+-trousers-lib
 -usb_modeswitch
 
 ### Thin out fonts

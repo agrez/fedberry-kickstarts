@@ -46,11 +46,17 @@ part / --fstype="ext4" --size 4128 --grow --label=rootfs --asprimary
 %include fedberry-pkgs.ks
 
 %packages
-### FedBerry lxqt specific packages
+### FedBerry lxqt remix specific packages
+chromium
 compton
 compton-conf
 fedberry-local-gtk-config
 fedberry-local-xorg-config
+## kwin & sddm pull in too many plasma desktop deps
+## sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323).
+## Workarounds don't seem to help. sddm also doesn't (yet?) support XDMCP.
+lightdm
+lightdm-gtk
 lxqt-common
 lxqt-theme-fedberry
 lxqt-panel
@@ -68,7 +74,6 @@ qpdfview
 @printing
 @networkmanager-submodules
 alsa-utils
-chromium
 blueberry
 claws-mail
 gamin
@@ -79,11 +84,6 @@ gvfs-smb
 initial-setup-gui
 libreoffice-writer
 libreoffice-calc
-## kwin & sddm pull in too many plasma desktop deps
-## sddm is too slow on RPi2 (see https://github.com/sddm/sddm/issues/323).
-## Workarounds don't seem to help. sddm also doesn't (yet?) support XDMCP.
-lightdm
-lightdm-gtk
 lxmenu-data
 mpg123 ## mp3 support
 pulseaudio

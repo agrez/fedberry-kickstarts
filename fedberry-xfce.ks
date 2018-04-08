@@ -45,10 +45,12 @@ part / --fstype="ext4" --size 4480 --grow --label=rootfs --asprimary
 
 %packages
 ### FedBerry xfce remix specific packages
+chromium
 fedberry-local-xfce-config
 fedberry-local-gtk-config
 fedberry-local-xorg-config
 omxplayer-desktop
+plymouth-theme-charge
 %end
 
 %packages
@@ -67,7 +69,6 @@ omxplayer-desktop
 @xfce-media
 # @xfce-office ## abiword is broken
 
-chromium
 dracut-config-generic
 glibc-all-langpacks
 gnome-keyring-pam
@@ -77,7 +78,6 @@ initial-setup-gui
 libreoffice-calc
 libreoffice-writer
 mpg123 ## mp3 support
-plymouth-theme-charge
 system-config-printer
 rfkill
 wget

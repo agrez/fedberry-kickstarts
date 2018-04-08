@@ -54,6 +54,7 @@ fedberry-local-xorg-config
 lxqt-common
 lxqt-theme-fedberry
 lxqt-panel
+omxplayer-desktop
 plymouth-theme-charge
 qlipper
 qpdfview

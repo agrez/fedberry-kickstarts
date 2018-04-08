@@ -48,6 +48,7 @@ part / --fstype="ext4" --size 4480 --grow --label=rootfs --asprimary
 fedberry-local-xfce-config
 fedberry-local-gtk-config
 fedberry-local-xorg-config
+omxplayer-desktop
 %end
 
 %packages

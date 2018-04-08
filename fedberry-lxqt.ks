@@ -68,8 +68,8 @@ qpdfview
 @printing
 @networkmanager-submodules
 alsa-utils
-blueman
 chromium
+blueberry
 claws-mail
 gamin
 glibc-all-langpacks ## make sure all locales are available for inital-setup

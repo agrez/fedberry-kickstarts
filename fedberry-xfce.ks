@@ -164,6 +164,7 @@ sed -i -e 's|mode:\(.*\)random|mode:\1blank|' -e 's|lock:\(.*\)True|lock:\1False
 #Some .desktop files are missing icons when using breeze icon theme
 ln -s /usr/share/icons/breeze/categories/32/applications-utilities.svg /usr/share/icons/breeze/categories/32/applications-accessories.svg
 ln -s /usr/share/icons/breeze/apps/48/internet-web-browser.svg /usr/share/icons/breeze/apps/48/web-browser.svg
+ln -s /usr/share/icons/breeze/apps/48/mail-client.svg /usr/share/icons/breeze/apps/48/emblem-mail.svg
 gtk-update-icon-cache /usr/share/icons/breeze
 %end
 

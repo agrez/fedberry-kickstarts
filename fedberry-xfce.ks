@@ -69,6 +69,7 @@ plymouth-theme-charge
 @xfce-media
 # @xfce-office ## abiword is broken
 
+dnfdragora
 dracut-config-generic
 glibc-all-langpacks
 gnome-keyring-pam
@@ -103,8 +104,8 @@ glx-utils
 -asunder
 -autofs
 -desktop-backgrounds-basic
--dnfdragora-gui ## dnfdragora-gui(updater) are just too buggy at present
--dnfdragora-updater
+-dnfdragora-gui ## just too buggy at present
+-dnfdragora-updater ## just too buggy at present
 -fedberry-headless
 -fedora-logos
 -fedora-release

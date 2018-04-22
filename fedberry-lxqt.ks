@@ -76,6 +76,8 @@ qpdfview
 alsa-utils
 blueberry
 claws-mail
+dnfdragora
+firewall-config
 gamin
 glibc-all-langpacks ## make sure all locales are available for inital-setup
 gstreamer1-plugin-mpg123
@@ -102,9 +104,7 @@ xarchiver
 xscreensaver-extras
 
 ### @lxqt pulls in too many plasma desktop deps
-dnfdragora
 featherpad
-firewall-config
 lxqt-admin
 lxqt-about
 #lxqt-common ## from Fedberry packages
@@ -155,6 +155,7 @@ glx-utils
 -fprintd-pam
 -ibus-typing-booster
 -pcmciautils
+-dnfdragora-updater ## is just too buggy at present
 %end
 
 

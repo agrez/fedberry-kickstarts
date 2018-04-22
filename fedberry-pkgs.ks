@@ -20,7 +20,7 @@ fedberry-repo
 fedberry-selinux-policy
 i2c-tools
 initial-setup
-kernel-4.14.31-1.rpi.fc27.armv7hl
+kernel-4.14.34-1.rpi.fc27.armv7hl
 nano
 NetworkManager-wifi
 omxplayer

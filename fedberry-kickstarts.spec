@@ -1,6 +1,6 @@
 %define bname   fedberry
 %define name    %{bname}-kickstarts
-%define version 25
+%define version 27
 %define release 1
 
 Name:       %{name}
@@ -15,6 +15,8 @@ Source1:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-b
 Source2:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-minimal.ks
 Source3:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-xfce.ks
 Source4:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-lxqt.ks
+Source5:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-pkgs.ks
+Source6:    https://raw.githubusercontent.com/%{bname}/%{name}/master/%{bname}-post.ks
 BuildArch:  noarch
 
 %description
@@ -41,6 +43,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Apr 22 2018 Vaughan <vaughan at agrez dot net> 27-1
+- Update for FedBerry 27.1
+
 * Thu Jun 01 2017 Vaughan <vaughan at agrez dot net> 25-1
 - Update for FedBerry 25
 

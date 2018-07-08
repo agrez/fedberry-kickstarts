@@ -29,6 +29,7 @@ raspberrypi-vc-libs
 raspberrypi-vc-utils
 saveclock
 wiringpi
+wiringpi-tools
 
 #Our kernel now has no dependency on linux-firmware as all essential firmware
 #is included in release images. This helps minimise barebone image size.

@@ -4,7 +4,7 @@
 
 ### RPM & dnf related tweaking
 %post
-releasever=27
+releasever=28
 basearch=armhfp
 
 # Work around for poor key import UI in PackageKit

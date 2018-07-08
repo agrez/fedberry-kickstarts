@@ -51,7 +51,6 @@ part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 glibc-langpack-en
 
 ### Remove packages
--fedberry-headless
 -fedberry-selinux-policy
 -initial-setup
 -linux-firmware

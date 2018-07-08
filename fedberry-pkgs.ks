@@ -12,7 +12,6 @@ bluetooth-rpi3
 chrony ## DNF has 'issues' with time travel!
 dosfstools ## vfat file system support tools
 fedberry-config
-fedberry-headless
 fedberry-local
 fedberry-release
 fedberry-release-notes

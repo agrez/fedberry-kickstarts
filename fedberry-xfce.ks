@@ -106,7 +106,6 @@ glx-utils
 -desktop-backgrounds-basic
 -dnfdragora-gui ## just too buggy at present
 -dnfdragora-updater ## just too buggy at present
--fedberry-headless
 -fedora-logos
 -fedora-release
 -fedora-release-notes

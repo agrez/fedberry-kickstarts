@@ -149,7 +149,6 @@ glx-utils
 
 
 ### Packages to Remove
--fedberry-headless
 -fedora-release
 -fedora-release-notes
 -fprintd-pam

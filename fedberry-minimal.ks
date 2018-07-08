@@ -50,6 +50,7 @@ part / --fstype="ext4" --size 1568 --grow --fsoptions="noatime" --label=rootfs -
 @hardware-support
 dracut-config-generic
 bash-completion
+fedberry-headless
 GeoIP
 glibc-langpack-en
 hardlink

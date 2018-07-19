@@ -46,6 +46,7 @@ part / --fstype="ext4" --size 4480 --grow --label=rootfs --asprimary
 %packages
 ### FedBerry xfce remix specific packages
 chromium
+fedberry-local-chromium
 fedberry-local-xfce-config
 fedberry-local-gtk-config
 fedberry-local-xorg-config

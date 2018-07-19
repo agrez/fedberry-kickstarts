@@ -50,6 +50,7 @@ part / --fstype="ext4" --size 4128 --grow --label=rootfs --asprimary
 chromium
 compton
 compton-conf
+fedberry-local-chromium
 fedberry-local-gtk-config
 fedberry-local-xorg-config
 ## kwin & sddm pull in too many plasma desktop deps

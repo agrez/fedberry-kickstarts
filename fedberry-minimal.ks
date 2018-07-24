@@ -34,7 +34,7 @@ services --disabled="network,lvm2-monitor,dmraid-activation,ModemManager" --enab
 # NOTE: /boot and swap MUST use --asprimary to ensure '/' is the last partition in order for rootfs-resize to work.
 # Need to create logical volume groups first then partition
 part /boot --fstype="vfat" --size 512 --label=BOOT --asprimary
-part / --fstype="ext4" --size 1568 --grow --fsoptions="noatime" --label=rootfs --asprimary
+part / --fstype="ext4" --size 1664 --grow --fsoptions="noatime" --label=rootfs --asprimary
 
 
 

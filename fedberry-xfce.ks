@@ -10,7 +10,10 @@
 ###
 
 # System language
-lang en_US.UTF-8
+lang en_US.UTF-8 #--addsupport=de_DE.UTF-8,it_IT.UTF-8,es_ES.UTF-8,nl_NL.UTF-8,fr_FR.UTF-8,sv_SE.UTF-8
+
+# Keyboard layouts
+#keyboard --xlayouts=us,uk,de,fr,es
 
 # Firewall configuration
 firewall --enabled --service=mdns,ssh,samba-client

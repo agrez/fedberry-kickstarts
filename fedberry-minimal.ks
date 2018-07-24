@@ -54,6 +54,7 @@ fedberry-headless
 GeoIP
 glibc-langpack-en
 hardlink
+nfs-utils
 plymouth-theme-charge
 policycoreutils
 timedatex

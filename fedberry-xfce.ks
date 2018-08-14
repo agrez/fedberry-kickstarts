@@ -88,6 +88,7 @@ rfkill
 wget
 xfce4-mixer
 xscreensaver-extras
+youtube-dl
 
 ### @base-x pulls in too many uneeded drivers.
 xorg-x11-drv-evdev

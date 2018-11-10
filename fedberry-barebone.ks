@@ -17,6 +17,9 @@ timezone US/Eastern
 # Firewall configuration
 firewall --disabled
 
+# Disable bootloader
+bootloader --location=none --disabled
+
 # System authorization information
 auth --useshadow --passalgo=sha512
 rootpw fedberry

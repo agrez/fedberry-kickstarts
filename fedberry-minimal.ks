@@ -18,6 +18,9 @@ firewall --enabled --service=mdns,ssh
 # System authorization information
 auth --useshadow --passalgo=sha512
 
+# Disable bootloader
+bootloader --location=none --disabled
+
 # Run the Setup Agent on first boot
 firstboot --reconfig
 

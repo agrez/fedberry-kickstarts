@@ -56,6 +56,7 @@ fedberry-local-chromium
 fedberry-local-xfce-config
 fedberry-local-gtk-config
 fedberry-local-xorg-config
+mpv
 omxplayer-desktop
 plymouth-theme-charge
 %end
@@ -73,7 +74,6 @@ plymouth-theme-charge
 @xfce-apps
 @xfce-desktop
 @xfce-extra-plugins
-@xfce-media
 # @xfce-office ## abiword is broken
 
 dnfdragora
@@ -86,6 +86,8 @@ initial-setup-gui
 libreoffice-calc
 libreoffice-writer
 mpg123 ## mp3 support
+pavucontrol
+pragha
 system-config-printer
 rfkill
 volumeicon
@@ -109,7 +111,6 @@ glx-utils
 ### Remove misc packages
 -acpid
 -aspell-*
--asunder
 -autofs
 -desktop-backgrounds-basic
 -dnfdragora-updater ## just too buggy at present
@@ -122,7 +123,6 @@ glx-utils
 -mpg123-plugins-jack
 -rygel
 -xfce4-sensors-plugin
--xfburn
 %end
 
 

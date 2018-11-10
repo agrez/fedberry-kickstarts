@@ -65,6 +65,7 @@ timedatex
 
 ### Remove packages
 -@dial-up
+-geolite2-*
 -@standard
 -initial-setup-gui
 %end

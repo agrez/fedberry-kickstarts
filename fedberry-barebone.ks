@@ -56,6 +56,7 @@ glibc-langpack-en
 
 ### Remove packages
 -fedberry-selinux-policy
+-geolite2-*
 -initial-setup
 -linux-firmware
 -omxplayer

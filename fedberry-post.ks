@@ -4,7 +4,7 @@
 
 ### RPM & dnf related tweaking
 %post
-releasever=28
+releasever=$(rpm -q --qf '%{version}\n' fedberry-release)
 basearch=armhfp
 
 # Work around for poor key import UI in PackageKit

@@ -28,7 +28,7 @@ rootpw fedberry
 selinux --disabled
 
 # System services
-services --disabled="network,sssd" --enabled="saveclock"
+services --disabled="sssd,NetworkManager-wait-online" --enabled="saveclock"
 
 
 # Define how large you want your rootfs to be

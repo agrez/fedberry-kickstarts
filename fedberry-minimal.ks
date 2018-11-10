@@ -31,7 +31,7 @@ selinux --enforcing
 rootpw fedberry
 
 # System services
-services --disabled="network,lvm2-monitor,dmraid-activation,ModemManager" --enabled="rootfs-grow,initial-setup,headless-check,saveclock"
+services --disabled="lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup,headless-check,saveclock"
 
 # Define how large you want your rootfs to be
 # NOTE: /boot and swap MUST use --asprimary to ensure '/' is the last partition in order for rootfs-resize to work.

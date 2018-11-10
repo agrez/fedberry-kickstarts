@@ -25,7 +25,7 @@ firstboot --reconfig
 selinux --enforcing
 
 # System services
-services --disabled="network,lvm2-monitor,dmraid-activation,ModemManager" --enabled="rootfs-grow,initial-setup,saveclock"
+services --disabled="lvm2-monitor,dmraid-activation" --enabled="rootfs-grow,initial-setup,saveclock"
 
 
 # Define how large you want your rootfs to be

@@ -193,3 +193,9 @@ rm -f /var/tmp/zeros
 
 echo "Available space on rootfs: $(df -h |awk '/loop0p2/ { print $4 }')"
 %end
+
+### List all installed packages, sorted by size
+%post
+echo "Installed packages sorted by size:"
+rpm -qa --queryformat '%{size} %{name}\n' | sort -rn
+%end

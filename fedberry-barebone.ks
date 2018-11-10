@@ -52,6 +52,7 @@ part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 %packages --instLangs=en_US.utf8 --excludedocs
 @core
 authconfig
+crda
 glibc-langpack-en
 
 ### Remove packages
@@ -62,6 +63,7 @@ glibc-langpack-en
 -omxplayer
 -selinux-policy
 -selinux-policy-targeted
+-trousers
 %end
 
 

@@ -51,9 +51,10 @@ part / --fstype="ext4" --size 1664 --grow --fsoptions="noatime" --label=rootfs -
 %packages
 @core
 @hardware-support
-dracut-config-generic
 authconfig
 bash-completion
+crda
+dracut-config-generic
 fedberry-headless
 GeoIP
 glibc-langpack-en
@@ -68,6 +69,7 @@ timedatex
 -geolite2-*
 -@standard
 -initial-setup-gui
+-trousers
 %end
 
 

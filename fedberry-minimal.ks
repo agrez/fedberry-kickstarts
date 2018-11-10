@@ -52,6 +52,7 @@ part / --fstype="ext4" --size 1664 --grow --fsoptions="noatime" --label=rootfs -
 @core
 @hardware-support
 dracut-config-generic
+authconfig
 bash-completion
 fedberry-headless
 GeoIP

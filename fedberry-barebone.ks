@@ -51,6 +51,7 @@ part / --fstype="ext4" --size 2048 --grow --label="rootfs" --asprimary
 ### Fedora packages
 %packages --instLangs=en_US.utf8 --excludedocs
 @core
+authconfig
 glibc-langpack-en
 
 ### Remove packages

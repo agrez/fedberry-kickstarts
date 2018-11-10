@@ -88,8 +88,8 @@ libreoffice-writer
 mpg123 ## mp3 support
 system-config-printer
 rfkill
+volumeicon
 wget
-xfce4-mixer
 xscreensaver-extras
 youtube-dl
 

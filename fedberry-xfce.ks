@@ -56,9 +56,9 @@ fedberry-local-chromium
 fedberry-local-xfce-config
 fedberry-local-gtk-config
 fedberry-local-xorg-config
-mpv
 omxplayer-desktop
 plymouth-theme-charge
+vlc
 %end
 
 %packages

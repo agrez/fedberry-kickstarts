@@ -61,6 +61,7 @@ lightdm-gtk
 lxqt-common
 lxqt-theme-fedberry
 lxqt-panel
+vlc
 omxplayer-desktop
 plymouth-theme-charge
 qlipper

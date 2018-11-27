@@ -117,8 +117,9 @@ glx-utils
 -fedora-release
 -fedora-release-notes
 -firefox
+-geolite2-city
 -gimp-help
--jack-audio-connection-kit
+-ibus-typing-booster
 -mpg123-plugins-jack
 -rygel
 -xfce4-sensors-plugin
@@ -128,6 +129,12 @@ glx-utils
 ###
 # Post-installation Scripts
 ###
+
+### Two java runtime environments takes up a lot of space!
+%post
+dnf -y remove java-1.8.0-openjdk-aarch32-headless
+%end
+
 
 ### Explicitly set graphical.target as default as this is how initial-setup detects which version to run
 %post

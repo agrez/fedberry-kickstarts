@@ -54,6 +54,8 @@ linux-firmware
 -google-noto-sans-tagalog-fonts
 -google-noto-sans-tai-tham-fonts
 -google-noto-sans-meetei-mayek-fonts
+-google-noto-sans-cjk-ttc-fonts
+-google-noto-serif-cjk-ttc-fonts
 -lklug-fonts
 -vlgothic-fonts
 -khmeros-base-fonts

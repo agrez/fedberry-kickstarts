@@ -197,5 +197,5 @@ echo "Available space on rootfs: $(df -h |awk '/loop0p2/ { print $4 }')"
 ### List all installed packages, sorted by size
 %post
 echo "Installed packages sorted by size:"
-rpm -qa --queryformat '%{size} %{name}\n' | sort -rn
+rpm -qa --qf '%{SIZE} %{NAME}\n' | awk '{printf("%s Mb %s\n", $1 / 1000 / 1000, $2)}' | sort -k1 -n
 %end

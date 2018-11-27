@@ -90,7 +90,6 @@ pavucontrol
 pragha
 system-config-printer
 rfkill
-volumeicon
 wget
 xscreensaver-extras
 youtube-dl

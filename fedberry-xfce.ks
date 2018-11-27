@@ -150,14 +150,6 @@ sed -i s'/gpu_mem=32/gpu_mem=128/' /boot/config.txt
 %end
 
 
-### Tweak xfwm4 options
-%post
-echo "Modifying default xfwm4 options"
-# until vc4 is ready for prime time, disable compositing by default
-sed -i 's/use_compositing=true/use_compositing=false/' /usr/share/xfwm4/defaults
-%end
-
-
 ### Edit some default options
 %post
 echo "Modifying xscreensaver defaults"
